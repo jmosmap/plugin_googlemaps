@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<updates>
+	<update>
+		<name>Google Maps</name>
+		<description>Plugin Googlemap for showing Google Maps in your Joomla website</description>
+		<element>plugin_googlemap3</element>
+		<type>plugin</type>
+		<folder>system</folder>
+		<version>3.2</version>
+		<client>0</client>
+		<downloads>
+			<downloadurl type="full" format="tgz">http://joomlacode.org/gf/download/frsrelease/19377/158744/plugin_googlemap_J25_J3x.v3.2.zip</downloadurl>
+		</downloads>
+		<maintainer>Mike Reumer</maintainer>
+		<maintainerurl></maintainerurl>
+		<targetplatform name="joomla" version="2.5" />
+	</update>
+	<update>
+		<name>Google Maps</name>
+		<description>Plugin Googlemap for showing Google Maps in your Joomla website</description>
+		<element>plugin_googlemap3</element>
+		<type>plugin</type>
+		<folder>system</folder>
+		<version>3.2</version>
+		<client>0</client>
+		<downloads>
+			<downloadurl type="full" format="tgz">http://joomlacode.org/gf/download/frsrelease/19377/158744/plugin_googlemap_J25_J3x.v3.2.zip</downloadurl>
+		</downloads>
+		<maintainer>Mike Reumer</maintainer>
+		<maintainerurl></maintainerurl>
+		<targetplatform name="joomla" version="3.[0123]" />
+	</update>
+</updates>
