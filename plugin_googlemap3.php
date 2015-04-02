@@ -48,17 +48,10 @@ class plgSystemPlugin_googlemap3 extends JPlugin
 		$this->config = $config;
 		// Version of Joomla
 		$this->jversion = JVERSION;
-		// In Joomla 1.5 get the parameters in Joomla 1.6 and higher the plugin already has them
-		if (substr($this->jversion,0,3)=="1.5") {
-			$plugin = JPluginHelper::getPlugin('system', 'plugin_googlemap3');
-			$this->params = new JParameter( $plugin->params);
-		}
 		// Check if params are defined and set otherwise try to get them from previous version
 		$this->_upgrade_plugin();
 
-		// Load the language files for the plugin for Joomla 1.6 and higher
-		if (substr($this->jversion,0,3)!="1.5")
-			$this->loadLanguage();
+		$this->loadLanguage();
 		// Check if the params are defined and set so the initial defaults can be removed.
 		$this->_restore_permanent_defaults();
 		// Set document and doctype to null. Can only be retrievedwhen events are triggered. otherwise the language of the site magically changes.
@@ -95,7 +88,7 @@ class plgSystemPlugin_googlemap3 extends JPlugin
 	}
 	
 	/**
-	 * onPrepareContent is rename in Joomla 1.6 to onContentPrepare
+	 * onPrepareContent 
 	 */
 	public function onContentPrepare($context, &$article, &$params, $limitstart=0)
 	{
@@ -133,50 +126,6 @@ class plgSystemPlugin_googlemap3 extends JPlugin
 		// can't add information to the mosmap, other later added content is not checked and modules can't be checked
 		// $this->_replace( $text );	
 		// $this->_replace( $introtext );
-		
-		// Clean up variables
-		unset($app, $text, $introtext);
-	}
-	
-	/**
-	 * onPrepareContent is for Joomla 1.5
-	 */
-	public function onPrepareContent(&$article)
-	{
-		$this->event = 'onPrepareContent';
-	
-		$app = JFactory::getApplication();
-		if($app->isAdmin()) {
-			return;
-		}
-		
-		// get document types
-		$this->_getdoc();
-
-		// Check if fields exists. If article and text does not exists then stop
-		if (isset($article)&&isset($article->text))
-			$text = &$article->text;
-		else
-			return true;
-			
-		if (isset($article)&&isset($article->introtext))
-			$introtext = &$article->introtext;
-		else
-			$introtext = "";
-			
-		// check whether plugin has been unpublished
-		// PDF or feed can't show maps so remove it
-		if ( !$this->publ ||($this->doctype=='pdf'||$this->doctype=='feed') ) {
-			$text = preg_replace( $this->regex, '', $text );
-			$introtext = preg_replace( $this->regex, '', $introtext );
-			unset($app, $text, $introtext);
-			return true;
-		}
-		
-		// perform the replacement in a normal way, but this has the disadvantage that other plugins
-		// can't add information to the mosmap, other later added content is not checked and modules can't be checked
-		//$this->_replace( $text );	
-		//$this->_replace( $introtext );	
 		
 		// Clean up variables
 		unset($app, $text, $introtext);
@@ -315,10 +264,7 @@ class plgSystemPlugin_googlemap3 extends JPlugin
 //		print_r($matches);
 		if ($cnt>0) {
 			if ($this->helper==null) {
-				if (substr($this->jversion,0,3)=="1.5")
-					$filename = JPATH_SITE."/plugins/system/plugin_googlemap3_helper.php";
-				else
-					$filename = JPATH_SITE."/plugins/system/plugin_googlemap3/plugin_googlemap3_helper.php";
+				$filename = JPATH_SITE."/plugins/system/plugin_googlemap3/plugin_googlemap3_helper.php";
 				
 				include_once($filename);
 				$this->helper = new plgSystemPlugin_googlemap3_helper($this->jversion, $this->params, $this->regex, $this->document, $this->brackets);
@@ -381,10 +327,7 @@ class plgSystemPlugin_googlemap3 extends JPlugin
 	}
 	
 	function _getEditorPositions($strBody) {
-		if (substr($this->jversion,0,3)=="1.5"||substr($this->jversion,0,3)=="1.6"||$this->jversion=="1.7.0"||$this->jversion=="1.7.1"||$this->jversion=="1.7.2")
-			preg_match_all("/<!-- Start Editor -->(.*)<!-- End Editor -->/Ums", $strBody, $strEditor, PREG_PATTERN_ORDER);
-		else
-			preg_match_all("/<div class=\"edit item-page\">(.*)<\/form>\n<\/div>/Ums", $strBody, $strEditor, PREG_PATTERN_ORDER);
+		preg_match_all("/<div class=\"edit item-page\">(.*)<\/form>\n<\/div>/Ums", $strBody, $strEditor, PREG_PATTERN_ORDER);
 
 		$intOffset = 0;
 		$intIndex = 0;
@@ -429,10 +372,7 @@ class plgSystemPlugin_googlemap3 extends JPlugin
 		if ($this->params->get( 'publ', '' )!='') {
 			jimport('joomla.filesystem.file');
 			
-			if (substr($this->jversion,0,3)=="1.5")
-				$dir = JPATH_SITE."/plugins/system/";
-			else
-				$dir = JPATH_SITE."/plugins/system/plugin_googlemap3/";
+			$dir = JPATH_SITE."/plugins/system/plugin_googlemap3/";
 			
 			if (file_exists($dir.'plugin_googlemap3.perm')) {
 				if (JFile::move ($dir.'plugin_googlemap3.xml', $dir.'plugin_googlemap3.init')) {
