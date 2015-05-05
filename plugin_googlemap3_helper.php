@@ -1130,7 +1130,7 @@ class plgSystemPlugin_googlemap3_helper
         $dirform.="<span class=\"txtdir\">".$this->_mp->txtdir."</span>";
 		
 		if ($type=='Marker') {
-			$dirform.="<input ".(($this->_mp->txtto=='')?"type='hidden' ":"type='radio' ")." ".(($this->_mp->dirdefault=='0')?"checked='checked'":"")." name='dir' value='to'>".(($this->_mp->txtto!='')?"<span class=\"dirlabel dirto\">".$this->_mp->txtto."&nbsp;</span>":"")."<input ".(($this->_mp->txtfrom=='')?"type='hidden' ":"type='radio' ").(($this->_mp->dirdefault=='1')?"checked='checked'":"")." name='dir' value='from'>".(($this->_mp->txtfrom!='')?"<span class=\"dirlabel dirfrom\">".$this->_mp->txtfrom."</span>":"");
+			$dirform.="<input ".(($this->_mp->txtto=='')?"type='hidden' ":"type='radio' ")." ".(($this->_mp->dirdefault=='0')?"checked='checked'":"")." name='dir' value='to'>".(($this->_mp->txtto!='')?"<span class=\"dirlabel dirto\">".$this->_mp->txtto."&nbsp;</span>":"")."<input type='radio' ".(($this->_mp->dirdefault=='1')?"checked='checked'":"")." name='dir' value='from'".(($this->_mp->txtfrom=='')?"style='display:none'":"").">".(($this->_mp->txtfrom!='')?"<span class=\"dirlabel dirfrom\">".$this->_mp->txtfrom."</span>":"");
 			$dirform.="<br /><span class=\"dirlabel diraddr\">".$this->_mp->txtdiraddr."</span><input type='text' class='inputbox' size='".$this->_mp->inputsize."' name='saddr' id='saddr' value='' />";
 
 			if (!empty($this->_mp->address))
@@ -1172,7 +1172,7 @@ class plgSystemPlugin_googlemap3_helper
 	
 	function _processMapv3_templatedirform_dirtype($dirtext, $dircheck, $dirchecktype, $dirvalue) {
 		if ($dirtext!=''||$dircheck==$dirchecktype) {
-			$text = "<input ".(($dirtext==''||$this->_mp->formdirtype=='0')?"type='hidden' ":"type='radio' ")."class='radio' name='dirflg' value='".$dirvalue."' ".(($dircheck==$dirchecktype)?"checked='checked'":"")." />".(($dirtext!=''&&$this->_mp->formdirtype=='1')?"<span class=\"dirlabel dirtype\">".$dirtext."&nbsp;</span>":"");
+			$text = "<input type='radio' class='radio' name='dirflg' value='".$dirvalue."' ".(($dircheck==$dirchecktype)?"checked='checked'":"").(($dirtext=='')?"style='display:none'":"")." />".(($dirtext!=''&&$this->_mp->formdirtype=='1')?"<span class=\"dirlabel dirtype\">".$dirtext."&nbsp;</span>":"");
 		} else
 			$text="";
 		
