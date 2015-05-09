@@ -1149,8 +1149,8 @@ class plgSystemPlugin_googlemap3_helper
 			$dirform.="<br />";	
 
 		$dirform.=$this->_processMapv3_templatedirform_dirtype($this->_mp->txt_driving, $this->_mp->dirtype, "D", "");
-		$dirform.=$this->_processMapv3_templatedirform_dirtype($this->_mp->txt_avhighways, $this->_mp->avoidhighways, "D", "h");
-		$dirform.=$this->_processMapv3_templatedirform_dirtype($this->_mp->txt_avtoll, $this->_mp->avoidtoll, "D", "t");
+		$dirform.=$this->_processMapv3_templatedirform_dirtype($this->_mp->txt_avhighways, $this->_mp->avoidhighways, "1", "h");
+		$dirform.=$this->_processMapv3_templatedirform_dirtype($this->_mp->txt_avtoll, $this->_mp->avoidtoll, "1", "t");
 		$dirform.=$this->_processMapv3_templatedirform_dirtype($this->_mp->txt_transit, $this->_mp->dirtype, "R", "r");
 		$dirform.=$this->_processMapv3_templatedirform_dirtype($this->_mp->txt_bicycle, $this->_mp->dirtype, "B", "b");
 		$dirform.=$this->_processMapv3_templatedirform_dirtype($this->_mp->txt_walking, $this->_mp->dirtype, "W", "w");
