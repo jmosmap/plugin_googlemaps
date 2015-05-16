@@ -40,7 +40,6 @@ class plgSystemPlugin_googlemap3_helper
 	var	$first_mootools;
 	var	$first_modalbox;
 	var	$first_localsearch;
-	var $first_googleearth;
 	var	$first_kmlrenderer;
 	var	$first_kmlelabel;
 	var	$first_svcontrol;
@@ -96,9 +95,6 @@ class plgSystemPlugin_googlemap3_helper
 		// Get language
 		$this->langtype = $this->params->get( 'langtype', '' );
 		$this->lang = JFactory::getLanguage();
-		// Load the language files for Joomla 1.5. In Joomla 1.6 it is done in the construct of the plugin
-		if (substr($this->jversion,0,3)=="1.5")
-			$this->lang->load("plg_system_plugin_googlemap3", JPATH_SITE."/administrator", $this->lang->getTag(), true);
 		$this->language = $this->_getlang();
 		$this->no_javascript = JText::_( 'CMN_JAVASCRIPT', _CMN_JAVASCRIPT);
 		// Get region
@@ -108,16 +104,22 @@ class plgSystemPlugin_googlemap3_helper
 		// Get params
 		$this->googlewebsite = $this->params->get( 'googlewebsite', 'maps.google.com' );
 		$this->_debug_log("googlewebsite: ".$this->googlewebsite);
+		$this->googlewebsiteext = str_replace("maps.google", "", $this->googlewebsite);
+		$this->googlewebsiteext = str_replace("ditu.google", "", $this->googlewebsiteext);
 		$this->urlsetting = $this->params->get( 'urlsetting', 'http_host' );
 		$this->_debug_log("urlsetting: ".$this->urlsetting);
 		if ($this->urlsetting=='mosconfig')
 			$this->urlsetting = $this->url;
 		else 
 			$this->urlsetting = $_SERVER['HTTP_HOST'];
-		$this->google_API_version = $this->params->get( 'Google_API_version', '3.x' );
+		$this->google_API_version = $this->params->get( 'Google_API_version', '3' );
+		if (substr($this->google_API_version,0,1)=='2')
+			$this->google_API_version = '3';
+		if (substr($this->google_API_version,1,2)=='.x')
+			$this->google_API_version = '3.exp';
 		$this->mapcss = $this->params->get( 'mapcss', '' );
 		$this->clientgeotype = $this->params->get( 'clientgeotype', '0' );
-		$this->langanim = $this->params->get( 'langanim', 'en;The requested panorama could not be displayed|Could not generate a route for the current start and end addresses|Street View coverage is not available for this route|You have reached your destination|miles|miles|ft|kilometers|kilometer|meters|In|You will reach your destination|Stop|Drive|Press Drive to follow your route|Route|Speed|Fast|Medium|Slow' );
+		$this->langanim = $this->params->get( 'langanim', 'en-GB;The requested panorama could not be displayed|Could not generate a route for the current start and end addresses|Street View coverage is not available for this route|You have reached your destination|miles|miles|ft|kilometers|kilometer|meters|In|You will reach your destination|Stop|Drive|Press Drive to follow your route|Route|Speed|Fast|Medium|Slow' );
 		// Get key
 		$this->googlekey = $this->_get_API_key();
 		// Pagebreak regular expression
@@ -128,12 +130,12 @@ class plgSystemPlugin_googlemap3_helper
 		$this->first_mootools=true;
 		$this->first_modalbox=true;
 		$this->first_localsearch=true;
-		$this->first_googleearth=true;
 		$this->first_kmlrenderer=true;
 		$this->first_kmlelabel=true;
 		$this->first_svcontrol=true;
 		$this->first_animdir= true;
 		$this->first_arcgis=true;
+		$this->first_geoloc=true;
 		// collect libraries of all maps 
 		$this->googlescript_libraries = array();
 		// define language of all maps
@@ -330,76 +332,9 @@ class plgSystemPlugin_googlemap3_helper
 
 		$this->_debug_log("clientgeotype: ".$this->clientgeotype);
 		
-		// Latitude only when no coordinates are specified and no address
-		if(!empty($this->_mp->latitudeid)) {
-			// Get information
-			$url = "http://www.google.de/latitude/apps/badge/api?user=".$this->_mp->latitudeid."&type=kml";
-			unset($this->_mp->latitudeid);
-			$getpage = $this->_getURL($url);
-			if ($getpage!='') {
-				$expr = '/xmlns/';
-				$getpage = preg_replace($expr, 'id', $getpage);
-				$xml = new SimpleXMLElement($getpage);
-				$coords = "";
-				foreach($xml->xpath('//coordinates') as $coordinates) {
-					$coords = $coordinates;
-					break;
-				}
-				if ($coords!='') {
-					$this->_debug_log("Coordinates: ".join(", ", explode(",", $coords)));
-					list ($this->_mp->longitude, $this->_mp->latitude) = explode(",", $coords);
-					$this->_inline_coords = 1;
-					
-					if ($this->_mp->centerlat==''&&$this->_mp->centerlon=='') {
-						$this->_mp->zoom = 19 + $this->_mp->corzoom;
-					}
-					
-					// Get icon
-					if ($this->_mp->icon=='') {
-						foreach($xml->xpath('//Icon/href') as $href) {
-							$this->_mp->icon = (string) $href;
-							break;
-						}
-						if ($this->_mp->icon!=""&&$this->_mp->iconwidth==""&&$this->_mp->iconheight=="") {
-							$this->_mp->iconwidth = "32";
-							$this->_mp->iconheight = "32";
-						}
-						if ($this->_mp->icon!=""&&$this->_mp->iconanchorx==""&&$this->_mp->iconanchory=="") {
-							$this->_mp->iconanchorx = "16";
-							$this->_mp->iconanchory = "32";
-						}
-					}
-					// show description -> add to text
-					if ($this->_mp->latitudedesc=="1") {
-						foreach($xml->xpath('//description') as $descr) {
-							$desc = $descr;
-							break;
-						}
-						$desc=html_entity_decode(html_entity_decode(trim($desc)));
-						$desc=str_replace("\"","\\\"", $desc);
-						$desc=str_replace("&#0{0,2}39;","'", $desc);
-						
-						$this->_mp->description .= "<p class='latitude'>".str_replace(' http://www.google.com/latitude/apps/badge', '', $desc)."</p>";
-					}
-					// show coordinates -> add to text
-					if ($this->_mp->latitudecoord=="1") {
-						$this->_mp->description .= "<table class=latitudetable><tr><td>Latitude</td><td>".$this->_mp->latitude."</td></tr><tr><td>Longitude</td><td>".$this->_mp->longitude."</td></tr></table>";
-					}
-				} else
-					$this->_debug_log("Latitude coordinates: null");
-			} else
-				$this->_debug_log("Latitude totally wrong!");
-			unset($url, $getpage, $expr, $xml, $coord, $coordinates, $descr, $desc);
-		}
-
 		if ($this->_mp->twittername!="") {
-			if (substr($this->jversion,0,3)=="1.5") {
-				$url = (($this->_mp->proxy=="0")?$this->base:"")."/plugins/system/plugin_googlemap3_twitter_kml.php?";
-				$token = JUtility::getToken();
-			} else {
-				$url = (($this->_mp->proxy=="0")?$this->base:"")."/plugins/system/plugin_googlemap3/plugin_googlemap3_twitter_kml.php?";
-				$token = JSession::getFormToken();
-			}
+			$url = (($this->_mp->proxy=="0")?$this->base:"")."/plugins/system/plugin_googlemap3/plugin_googlemap3_twitter_kml.php?";
+			$token = JSession::getFormToken();
 			
 			$url .= "twittername=".urlencode($this->_mp->twittername);
 			$url .= "&twittertweets=".urlencode($this->_mp->twittertweets);
@@ -497,7 +432,7 @@ class plgSystemPlugin_googlemap3_helper
 		$this->_debug_log("Memory Usage End: " . $endmem . " KB (".$diffmem." KB)");
 
 		// Add code to text
-		$code = "\n<!-- Plugin Google Maps version 3.2 by Mike Reumer ".(($this->debug_text!='')?$this->debug_text."\n":"")."-->".$code;
+		$code = "\n<!-- Plugin Google Maps version 3.3 by Mike Reumer ".(($this->debug_text!='')?$this->debug_text."\n":"")."-->".$code;
 
 		// Clean up debug text for next _process
 		$this->debug_text = '';
@@ -506,7 +441,6 @@ class plgSystemPlugin_googlemap3_helper
 		$offset = strpos($this->_text, $match);
 
 		if ($this->_mp->show==0) {
-
 			// Removed the -1 in first piece of text.
 			$this->_text = substr($this->_text, 0, $offset).preg_replace('/'.preg_quote($match, '/').'/', $lbcode, substr($this->_text,$offset), 1);
 
@@ -546,7 +480,6 @@ class plgSystemPlugin_googlemap3_helper
 			$this->_mp->longitude=$this->_remove_html_tags($m[1][0]);
 			$this->_inline_coords = 1;
 		}
-
 		$reg='/<td\b[^>]*><strong>City:<\/strong>(.*?)<\/td>/si';
 		$c=preg_match_all($reg,$this->_text,$m);
 		if ($c>0)
@@ -605,19 +538,14 @@ class plgSystemPlugin_googlemap3_helper
 		$this->_processMapv3_tiles();
 		$code .= $this->_processMapv3_icons();
 		$this->_processMapv3_streetview();
-		$this->_processMapv3_earthmaptype();
 		// Remove unnecessary parameters
 		unset($this->_mp->inputsize);
 	
 		$code.="\n<script type='text/javascript'>/*<![CDATA[*/";
 		
 		if ($this->_mp->kmlrenderer=='geoxml') {
-			if ($this->_mp->proxy=="1") {
-				if (substr($this->jversion,0,3)=="1.5")
-					$code .= "\nvar proxy = '".$this->base."/plugins/system/plugin_googlemap3_kmlprxy.php?';";
-				else
-					$code .= "\nvar proxy = '".$this->base."/plugins/system/plugin_googlemap3/plugin_googlemap3_kmlprxy.php?';";
-			}
+			if ($this->_mp->proxy=="1") 
+				$code .= "\nvar proxy = '".$this->base."/plugins/system/plugin_googlemap3/plugin_googlemap3_kmlprxy.php?';";
 			$code.="\ntop.publishdirectory = '".$this->base."/media/plugin_googlemap3/site/geoxmlv3/';";
 		}
 		
@@ -686,27 +614,19 @@ class plgSystemPlugin_googlemap3_helper
 		//Load mootools first because it's necessary for the extra functions like lightbox or effects
 		// For effects we need to load mootools-more/framework true too
 		if (($this->_mp->loadmootools=="1"&&$this->_mp->kmllightbox=="1"||$this->_mp->lightbox=="1"||$this->_mp->effect!="none"||$this->_mp->dir=="3"||$this->_mp->dir=="4"||strpos($this->_mp->description, "MOOdalBox"))&&$this->first_mootools) {
-			if ($this->event!='onAfterRender') {
-				if (substr($this->jversion,0,3)=='1.5')
-					JHTML::_('behavior.mootools');
-				else
-					JHtml::_('behavior.framework',(($this->_mp->effect!="none")?true:false));				
-			} else {
-				if (substr($this->jversion,0,3)=='1.5') {
-					$url = $this->base."/plugins/system/mtupgrade/mootools.js";
+			if ($this->event!='onAfterRender')
+				JHtml::_('behavior.framework',(($this->_mp->effect!="none")?true:false));				
+			else {
+				$mooconfig = JFactory::getConfig();
+				$moodebug = $mooconfig->get('debug');
+				$moouncompressed   = $moodebug ? '-uncompressed' : '';
+				$url = $this->base."/media/system/js/mootools-core".$moouncompressed.".js";
+				$this->_addscript($url);
+				if ($this->_mp->effect!="none") {
+					$url = $this->base."/media/system/js/mootools-more".$moouncompressed.".js";
 					$this->_addscript($url);
-				} else {
-					$mooconfig = JFactory::getConfig();
-		            $moodebug = $mooconfig->get('debug');
-			        $moouncompressed   = $moodebug ? '-uncompressed' : '';
-					$url = $this->base."/media/system/js/mootools-core".$moouncompressed.".js";
-					$this->_addscript($url);
-					if ($this->_mp->effect!="none") {
-						$url = $this->base."/media/system/js/mootools-more".$moouncompressed.".js";
-						$this->_addscript($url);
-					}
-					unset($mooconfig, $moodebug, $moouncompressed);
 				}
+				unset($mooconfig, $moodebug, $moouncompressed);
 			}
 			$this->first_mootools = false;
 		}
@@ -721,21 +641,11 @@ class plgSystemPlugin_googlemap3_helper
 		// Define the language for the maps thru the script
 		$this->googlescript_lang = $this->_mp->lang;
 		
-		if ($this->_mp->mapType=='earth'||$this->_mp->showearthmaptype=="1") {
-			$this->_addscript($this->protocol."www.google.com/jsapi?key=".$this->googlekey);
-			$this->_addscript($this->protocol."www.google.com/uds/?file=earth&amp;v=1");
-			$this->_addscript($this->base."/media/plugin_googlemap3/site/googleearthv3/googleearth.js");
-			$this->first_googleearth = false;
-		}
-		
 		if($this->first_googlemaps) {
 			$url = $this->base."/media/plugin_googlemap3/site/googlemaps/googlemapsv3.js";
 			$this->_addscript($url);
 			if ($this->mapcss!='') {
-				if (substr($this->jversion,0,3)=="1.5")
-					$url = $this->base."/plugins/system/plugin_googlemap3.css.php";
-				else
-					$url = $this->base."/plugins/system/plugin_googlemap3/plugin_googlemap3.css.php";
+				$url = $this->base."/plugins/system/plugin_googlemap3/plugin_googlemap3.css.php";
 				$this->_addstylesheet($url);
 			}
 			$this->first_googlemaps=false;
@@ -758,34 +668,32 @@ class plgSystemPlugin_googlemap3_helper
 		}
 
 		if (($this->_mp->kmllightbox=="1"||$this->_mp->lightbox=="1"||$this->_mp->dir=="3"||$this->_mp->dir=="4"||strpos($this->_mp->description, "MOOdalBox"))&&$this->first_modalbox)	{
-			if (substr($this->jversion,0,3)=='1.5')
-				$this->_addscript($this->base."/media/plugin_googlemap3/site/moodalbox/js/modalbox1.2hackv3.js");
-			else
-				$this->_addscript($this->base."/media/plugin_googlemap3/site/moodalbox/js/modalbox1.3hackv3.js");
+			$this->_addscript($this->base."/media/plugin_googlemap3/site/moodalbox/js/modalbox1.3hackv3.js");
 			
 			$this->_addstylesheet($this->base."/media/plugin_googlemap3/site/moodalbox/css/moodalbox.css");
 			$this->first_modalbox = false;
 		}
 		
 		if ($this->_mp->clientgeotype=='local'&&$this->first_localsearch) {
-			$this->_addscript($this->protocol."www.google.com/uds/api?file=uds.js&amp;v=1.0&amp;key=".$this->googlekey);
-			$style = "@import url('".$this->protocol."www.google.com/uds/css/gsearch.css');\n@import url('".$this->protocol."www.google.com/uds/solutions/localsearch/gmlocalsearch.css');";
+			$this->_addscript($this->protocol."www.google".$this->googlewebsiteext."/uds/api?file=uds.js&amp;v=1.0&amp;key=".$this->googlekey);
+			$style = "@import url('".$this->protocol."www.google".$this->googlewebsiteext."/uds/css/gsearch.css');\n@import url('".$this->protocol."www.google".$this->googlewebsiteext."/uds/solutions/localsearch/gmlocalsearch.css');";
 			$this->_addstyledeclaration($style);
 			$this->first_localsearch = false;
 		}
 		
+		if ($this->_mp->geoloc=='1'&&$this->first_geoloc) {
+			$this->_addscript($this->base."/media/plugin_googlemap3/site/geolocation/js/geolocationmarker.js");
+			$this->first_geoloc = false;
+		}
+
 		// Clean up variables except generated code and memory variables
 		unset($url);
 	}
 	
 	function add_google_script() {
 		if($this->first_google) {
-			if ($this->protocol=='http://')
-				$url = $this->protocol.$this->googlewebsite."/maps/api/js?v=".$this->google_API_version;
-			else {
-				$url = 'maps.googleapis.com';
-				$url = $this->protocol.$url."/maps/api/js?v=".$this->google_API_version;
-			}
+			$url = 'maps.googleapis.com';
+			$url = $this->protocol.$url."/maps/api/js?v=".$this->google_API_version;
 			
 			if ($this->googlekey!="")
 				$url .= "&amp;key=".$this->googlekey;
@@ -797,13 +705,19 @@ class plgSystemPlugin_googlemap3_helper
 
 			if (count($this->googlescript_libraries)>0)
 				$url .= "&amp;libraries=".implode(',', $this->googlescript_libraries);
-				
-			$url .= "&amp;sensor=false";
 
+			if ($this->_mp->signedin!='0') 
+				$url .= "&amp;signed_in=true";
+				
 			// Get the rendered body text
 			$text = JResponse::getBody();
 			
-			$this->_addscriptinheader($url, $text, true);
+			if (substr($this->jversion,0,3)=="2.5") {
+				// Check if mootools is loaded
+				// load after mootools script.
+				$this->_addscriptinheaderaftermootools($url, $text, true);
+			} else
+				$this->_addscriptinheader($url, $text, true);
 	
 			// Set the body text with the replaced result
 			JResponse::setBody($text);
@@ -939,112 +853,13 @@ class plgSystemPlugin_googlemap3_helper
 		unset($this->_mp->svyaw,$this->_mp->svpitch,$this->_mp->svzoom);
 	}
 
-	function _processMapv3_earthmaptype() {
-		$this->_mp->earthoptions = new stdClass();
-		
-		if ($this->_mp->showearthmaptype=='1'||$this->_mp->mapType=='earth') {
-			$this->_mp->earthoptions->timeout = $this->_mp->earthtimeout;
-			$this->_mp->earthoptions->borders = $this->_mp->earthborders=='1';
-			$this->_mp->earthoptions->buildings = $this->_mp->earthbuildings=='1';
-			$this->_mp->earthoptions->roads = $this->_mp->earthroads=='1';
-			$this->_mp->earthoptions->terrain = $this->_mp->earthterrain=='1';
-
-			$this->_mp->earthoptions->lookat = array();
-			if (count($this->_mp->lookat)>0) {
-				foreach ($this->_mp->lookat as $lkat) {
-					$values = explode(',', $lkat);
-					$la = false;
-					$lookat = new stdClass();
-					if (count($values)>0&&$values[0]!='') { // Latitude
-						$lookat->latitude = floatval($values[0]);
-						$la = true;
-					}
-					if (count($values)>1&&$values[1]!='') { // Longitude
-						$lookat->longitude = floatval($values[1]);
-						$la = true;
-					}
-					if (count($values)>2&&$values[2]!='') { // Range
-						$lookat->range = intval($values[2]);
-						$la = true;
-					}
-					if (count($values)>3&&$values[3]!='') { // Tilt
-						$lookat->tilt = intval($values[3]);
-						$la = true;
-					}
-					if (count($values)>4&&$values[4]!='') { // Heading
-						$lookat->heading = intval($values[4]);
-						$la = true;
-					}
-					if (count($values)>5&&$values[5]!='') { // Altitude
-						$lookat->altitude = intval($values[5]);
-						$la = true;
-					}
-					if (count($values)>6&&$values[6]!='')   // Flytospeed
-						if ($values[6]=='teleport')
-							$lookat->flytospeed = $values[6];
-						else
-							$lookat->flytospeed = floatval($values[6]);
-					
-					if ($la)
-						$this->_mp->earthoptions->lookat[] = $lookat;
-				}
-			}
-			
-			$this->_mp->earthoptions->camera = array();
-			if (count($this->_mp->camera)>0) {
-				foreach ($this->_mp->camera as $cam) {
-					$values = explode(',', $cam);
-					$c = false;
-					$camera = new stdClass();
-					if (count($values)>0&&$values[0]!='') { // Latitude
-						$camera->latitude = floatval($values[0]);
-						$c = true;
-					}
-					if (count($values)>1&&$values[1]!='') { // Longitude
-						$camera->longitude = floatval($values[1]);
-						$c = true;
-					}
-					if (count($values)>2&&$values[2]!='') { // Tilt
-						$camera->tilt = intval($values[2]);
-						$c = true;
-					}
-					if (count($values)>3&&$values[3]!='') { // Heading
-						$camera->heading = intval($values[3]);
-						$c = true;
-					}
-					if (count($values)>4&&$values[4]!='') { // Altitude
-						$camera->altitude = intval($values[4]);
-						$c = true;
-					}
-					if (count($values)>5&&$values[5]!='') { // Roll
-						$camera->roll = intval($values[5]);
-						$c = true;
-					}
-					if (count($values)>6&&$values[6]!='')   // Flytospeed
-						if ($values[6]=='teleport')
-							$camera->flytospeed = $values[6];
-						else
-							$camera->flytospeed = floatval($values[6]);
-					
-					if ($c)
-						$this->_mp->earthoptions->camera[] = $camera;
-				}
-			}
-		}
-		unset($this->_mp->earthtimeout, $this->_mp->earthborders, $this->_mp->earthbuildings, $this->_mp->earthroads, $this->_mp->lookat, $this->_mp->earthterrain, $values, $la, $lookat, $c, $camera);
-	}
-
 	function _processMapv3_kml() {
 		// Rename parameter so they can be used by geoxml
 		$this->_mp->geoxmloptions = new stdClass();
 		
 		// Change kml url if proxy is used
 		if ($this->_mp->proxy=='1') {
-			if (substr($this->jversion,0,3)=="1.5") {
-				$token = JUtility::getToken();
-			} else {
-				$token = JSession::getFormToken();
-			}
+			$token = JSession::getFormToken();
 			
 			$this->_mp->geoxmloptions->token = $token;
 			$this->_mp->geoxmloptions->id = $this->id;
@@ -1193,6 +1008,26 @@ class plgSystemPlugin_googlemap3_helper
 		$code.= "<!-- fail nicely if the browser has no Javascript -->
 				<noscript><blockquote class='warning'><p>".$this->no_javascript."</p></blockquote></noscript>";			
 
+		if ($this->_mp->mapprint!='none') {
+	        // checks template image directory for image, if non found default are loaded
+			if ($this->_mp->mapprint=='icon')
+				$text = JHtml::_('image', 'system/printButton.png', JText::_('JGLOBAL_PRINT'), null, true);
+			elseif ($this->_mp->mapprint=='text')
+				$text = JText::_('JGLOBAL_PRINT');
+			elseif  ($this->_mp->mapprint=='both')
+				$text = '<span class="icon-print"></span>&#160;' . JText::_('JGLOBAL_PRINT') . '&#160;';
+			else 			
+				$text = $this->_mp->mapprint;
+				
+			$attribs['title']   = JText::_('JGLOBAL_PRINT');
+			$attribs['onclick'] = "javascript:googlemap".$this->_mp->mapnm.".gmapPrint();return false;";
+			$attribs['rel']     = 'nofollow';
+			$attribs['class']     = 'mapprint';
+			
+			$code .= JHtml::_('link', "#", $text, $attribs);
+		}
+
+		$code.="<div id='mapplaceholder".$this->_mp->mapnm."'>";
 		if ($this->_mp->align!='none')
 			$code.="<div id='mapbody".$this->_mp->mapnm."' style=\"display: none; text-align:".$this->_mp->align."\">";
 		else
@@ -1223,13 +1058,6 @@ class plgSystemPlugin_googlemap3_helper
 			$code.="	<input name=\"Goto\" type=\"button\" class=\"button\" onClick=\"javascript:googlemap".$this->_mp->mapnm.".gotoAddress();return false;\" value=\"".$this->_mp->txtgotoaddr."\">";
 			$code.="</form>";
 
-		}
-
-		if ($this->_mp->latitudeform=='1')	{
-			$code.="<form id=\"latitudeform".$this->_mp->mapnm."\" class=\"latitudefrom\" onSubmit=\"javascript:googlemap".$this->_mp->mapnm.".showLatitude();return false;\">";
-			$code.="	<input id=\"latitudeid".$this->_mp->mapnm."\" name=\"latitudeid".$this->_mp->mapnm."\" type=\"text\" size=\"".$this->_mp->inputsize."\" value=\"\">";
-			$code.="	<input name=\"show\" type=\"button\" class=\"button\" onClick=\"javascript:googlemap".$this->_mp->mapnm.".showLatitude();return false;\" value=\"Show latitude location\">";
-			$code.="</form>";
 		}
 
 		if ($this->_mp->formaddress==1)
@@ -1280,19 +1108,30 @@ class plgSystemPlugin_googlemap3_helper
 
 		// Close of mapbody div
 		$code.="</div>";
+		// Close of mapplaceholder div
+		$code.="</div>";
 		
 		return array($code, $lbcode);
 	}
 	
 	function _processMapv3_templatedirform($type) {
+//		// Adding Joomla template structure 
+//		// Get the path for the layout file
+//		$path = JPluginHelper::getLayoutPath('system', 'plugin_googlemap3');
+//		$layout      = new JLayoutFile('dirform', $path);
+//
+//		unset($path);
+//
+//		return $layout->render($this);
+		
 		$dirform="";
 		$dirform="<form id='directionform".$this->_mp->mapnm."' action='".$this->protocol.$this->googlewebsite."/maps' method='get' target='_blank' onsubmit='javascript:googlemap".$this->_mp->mapnm.".DirectionMarkersubmit(this);return false;' class='mapdirform'>";
 		
-		$dirform.=$this->_mp->txtdir;
+        $dirform.="<span class=\"txtdir\">".$this->_mp->txtdir."</span>";
 		
 		if ($type=='Marker') {
-			$dirform.="<input ".(($this->_mp->txtto=='')?"type='hidden' ":"type='radio' ")." ".(($this->_mp->dirdefault=='0')?"checked='checked'":"")." name='dir' value='to'>".(($this->_mp->txtto!='')?$this->_mp->txtto."&nbsp;":"")."<input ".(($this->_mp->txtfrom=='')?"type='hidden' ":"type='radio' ").(($this->_mp->dirdefault=='1')?"checked='checked'":"")." name='dir' value='from'>".(($this->_mp->txtfrom!='')?$this->_mp->txtfrom:"");
-			$dirform.="<br />".$this->_mp->txtdiraddr."<input type='text' class='inputbox' size='".$this->_mp->inputsize."' name='saddr' id='saddr' value='' />";
+			$dirform.="<input ".(($this->_mp->txtto=='')?"type='hidden' ":"type='radio' ")." ".(($this->_mp->dirdefault=='0')?"checked='checked'":"")." name='dir' value='to'>".(($this->_mp->txtto!='')?"<span class=\"dirlabel dirto\">".$this->_mp->txtto."&nbsp;</span>":"")."<input type='radio' ".(($this->_mp->dirdefault=='1')?"checked='checked'":"")." name='dir' value='from'".(($this->_mp->txtfrom=='')?"style='display:none'":"").">".(($this->_mp->txtfrom!='')?"<span class=\"dirlabel dirfrom\">".$this->_mp->txtfrom."</span>":"");
+			$dirform.="<br /><span class=\"dirlabel diraddr\">".$this->_mp->txtdiraddr."</span><input type='text' class='inputbox' size='".$this->_mp->inputsize."' name='saddr' id='saddr' value='' />";
 
 			if (!empty($this->_mp->address))
 				$dirform.="<input type='hidden' name='daddr' value=\"".$this->_mp->address."\"/>";
@@ -1301,17 +1140,17 @@ class plgSystemPlugin_googlemap3_helper
 		}
 		
 		if ($type=='Form') {
-			$dirform.=(($this->_mp->txtfrom=='')?"":"<br />").$this->_mp->txtfrom."<input ".(($this->_mp->txtfrom=='')?"type='hidden' ":"type='text'")." class='inputbox' size='".$this->_mp->inputsize."' name='saddr' id='saddr' value=\"".(($this->_mp->formdir=='1')?$this->_mp->address:(($this->_mp->formdir=='2')?$this->_mp->toaddress:""))."\" />";
+			$dirform.=(($this->_mp->txtfrom=='')?"":"<br />")."<span class=\"dirlabel dirfrom\">".$this->_mp->txtfrom."</span><input ".(($this->_mp->txtfrom=='')?"type='hidden' ":"type='text'")." class='inputbox' size='".$this->_mp->inputsize."' name='saddr' id='saddr' value=\"".(($this->_mp->formdir=='1')?$this->_mp->address:(($this->_mp->formdir=='2')?$this->_mp->toaddress:""))."\" />";
 
-			$dirform.=(($this->_mp->txtto=='')?"":"<br />").$this->_mp->txtto."<input ".(($this->_mp->txtto=='')?"type='hidden' ":"type='text'")." class='inputbox' size='".$this->_mp->inputsize."' name='daddr' id='daddr' value=\"".(($this->_mp->formdir=='1')?$this->_mp->toaddress:(($this->_mp->formdir=='2')?$this->_mp->address:""))."\" />";
+			$dirform.=(($this->_mp->txtto=='')?"":"<br />")."<span class=\"dirlabel dirto\">".$this->_mp->txtto."</span><input ".(($this->_mp->txtto=='')?"type='hidden' ":"type='text'")." class='inputbox' size='".$this->_mp->inputsize."' name='daddr' id='daddr' value=\"".(($this->_mp->formdir=='1')?$this->_mp->toaddress:(($this->_mp->formdir=='2')?$this->_mp->address:""))."\" />";
 		}
 		
 		if (($this->_mp->txt_driving!=''||$this->_mp->txt_avhighways!=''||$this->_mp->txt_transit!=''||$this->_mp->txt_bicycle!=''||$this->_mp->txt_walking!='')&&$this->_mp->formdirtype=='1')
 			$dirform.="<br />";	
 
 		$dirform.=$this->_processMapv3_templatedirform_dirtype($this->_mp->txt_driving, $this->_mp->dirtype, "D", "");
-		$dirform.=$this->_processMapv3_templatedirform_dirtype($this->_mp->txt_avhighways, $this->_mp->avoidhighways, "D", "h");
-		$dirform.=$this->_processMapv3_templatedirform_dirtype($this->_mp->txt_avtoll, $this->_mp->avoidtoll, "D", "t");
+		$dirform.=$this->_processMapv3_templatedirform_dirtype($this->_mp->txt_avhighways, $this->_mp->avoidhighways, "1", "h");
+		$dirform.=$this->_processMapv3_templatedirform_dirtype($this->_mp->txt_avtoll, $this->_mp->avoidtoll, "1", "t");
 		$dirform.=$this->_processMapv3_templatedirform_dirtype($this->_mp->txt_transit, $this->_mp->dirtype, "R", "r");
 		$dirform.=$this->_processMapv3_templatedirform_dirtype($this->_mp->txt_bicycle, $this->_mp->dirtype, "B", "b");
 		$dirform.=$this->_processMapv3_templatedirform_dirtype($this->_mp->txt_walking, $this->_mp->dirtype, "W", "w");
@@ -1333,7 +1172,7 @@ class plgSystemPlugin_googlemap3_helper
 	
 	function _processMapv3_templatedirform_dirtype($dirtext, $dircheck, $dirchecktype, $dirvalue) {
 		if ($dirtext!=''||$dircheck==$dirchecktype) {
-			$text = "<input ".(($dirtext==''||$this->_mp->formdirtype=='0')?"type='hidden' ":"type='radio' ")."class='radio' name='dirflg' value='".$dirvalue."' ".(($dircheck==$dirchecktype)?"checked='checked'":"")." />".(($dirtext!=''&&$this->_mp->formdirtype=='1')?$dirtext."&nbsp;":"");
+			$text = "<input type='radio' class='radio' name='dirflg' value='".$dirvalue."' ".(($dircheck==$dirchecktype)?"checked='checked'":"").(($dirtext=='')?"style='display:none'":"")." />".(($dirtext!=''&&$this->_mp->formdirtype=='1')?"<span class=\"dirlabel dirtype\">".$dirtext."&nbsp;</span>":"");
 		} else
 			$text="";
 		
@@ -1341,21 +1180,20 @@ class plgSystemPlugin_googlemap3_helper
 	}
 	
 	function _processMapv3_templatedirform_checktype($dirtext, $dircheck, $dirname) {
-		$text =(($dirtext!=''&&$this->_mp->formdirtype=='1')?"<br/>":"")."<input ".(($dirtext==''||$this->_mp->formdirtype=='0')?"type='hidden' ":"type='checkbox' ")."class='checkbox' name='".$dirname."' value='".$dircheck."' ".(($dircheck=='1')?"checked='checked'":"")." />".(($dirtext!=''&&$this->_mp->formdirtype=='1')?$dirtext:"");
+		$text =(($dirtext!=''&&$this->_mp->formdirtype=='1')?"<br/>":"")."<input ".(($dirtext==''||$this->_mp->formdirtype=='0')?"type='hidden' ":"type='checkbox' ")."class='checkbox' name='".$dirname."' value='".$dircheck."' ".(($dircheck=='1')?"checked='checked'":"")." />".(($dirtext!=''&&$this->_mp->formdirtype=='1')?"<span class=\"dirlabel dircheck\">".$dirtext."</span>":"");
 		
 		return $text;
 	}
 	
 	function _getInitialParams() {
-		if (substr($this->jversion,0,3)=="1.5")
-			$filename = JPATH_SITE."/plugins/system/plugin_googlemap3.xml";
-		else
-			$filename = JPATH_SITE."/plugins/system/plugin_googlemap3/plugin_googlemap3.xml";
-
+		$filename = JPATH_SITE."/plugins/system/plugin_googlemap3/plugin_googlemap3.xml";
+		
+		// PHP changed external entity loading. This causes a warning when reading a local file. Switch to false to enable external entity loading.
+		if (function_exists('libxml_disable_entity_loader'))
+			$oldValue = libxml_disable_entity_loader( false );
+		
 		if ($xml = simplexml_load_file($filename)) {
-			if (substr($this->jversion,0,3)=="1.5")
-				$root =& $xml;
-			else if (isset($xml->config[0]->fields[0]))
+			if (isset($xml->config[0]->fields[0]))
 				$root = $xml->config[0]->fields[0];
 			else
 				$root =& $xml;
@@ -1379,9 +1217,12 @@ class plgSystemPlugin_googlemap3_helper
 				}
 			}
 		}
-		
+
+		if (function_exists('libxml_disable_entity_loader'))
+			libxml_disable_entity_loader( $oldValue );	
+			
 		// Clean up generated variables
-		unset($filename, $xml, $root, $params, $param, $name, $nm);
+		unset($filename, $xml, $root, $params, $param, $name, $nm, $oldValue);
 	}
 	
 	function _getURL($url) {
@@ -1436,7 +1277,8 @@ class plgSystemPlugin_googlemap3_helper
 
 		$this->_debug_log("Address: ".$address);
 		
-		$uri = $this->protocol."maps.googleapis.com/maps/api/geocode/xml?address=".urlencode($address)."&sensor=false";
+		$uri = 'maps.googleapis.com';
+		$uri = $this->protocol.$uri."/maps/api/geocode/xml?address=".urlencode($address)."&sensor=false";
 		$this->_debug_log("get_geo(".$uri.")");
 		$getpage = $this->_getURL($uri);
 
@@ -1449,15 +1291,19 @@ class plgSystemPlugin_googlemap3_helper
 		if ($getpage <>'') {
 			$expr = '/xmlns/';
 			$getpage = preg_replace($expr, 'id', $getpage);
-			$xml = new SimpleXMLElement($getpage);
-			foreach($xml->xpath('//location') as $coordinates) {
-				$coords = $coordinates->lat.", ".$coordinates->lng;
-				break;
-			}
-			if ($coords=='') {
-				$this->_debug_log("Coordinates: null");
-			} else
-				$this->_debug_log("Coordinates: ".$coords);
+			try {
+				$xml = new SimpleXMLElement($getpage);
+				foreach($xml->xpath('//location') as $coordinates) {
+					$coords = $coordinates->lat.", ".$coordinates->lng;
+					break;
+				}
+				if ($coords=='')
+					$this->_debug_log("Coordinates: null");
+				else
+					$this->_debug_log("Coordinates: ".$coords);
+			} catch(Exception $e) {
+				$this->_debug_log("Coordinates: ERROR");
+		    }
 		} else
 			$this->_debug_log("get_geo totally wrong end!");
 	
@@ -1675,12 +1521,12 @@ class plgSystemPlugin_googlemap3_helper
 				$text = preg_replace("/<head(| .*?)>(.*?)<\/head>/is", "<head$1>$2".$script."</head>", $text);
 			} else {
 				if ($first_script) {
-					//add script after the last script
-					// position last script and add length
+					// add script before the first script
+					// position first script
 					$pos = strpos($text, trim($scripts[0][0][0]));
 					$text = substr($text,0, $pos).$script.substr($text,$pos);
 				} else {
-					//add script after the last script
+					// add script after the last script
 					// position last script and add length
 					$pos = strpos($text, trim($scripts[0][$count-1][0]))+strlen(trim($scripts[0][$count-1][0]));
 					$text = substr($text,0, $pos).$script.substr($text,$pos);
@@ -1692,6 +1538,77 @@ class plgSystemPlugin_googlemap3_helper
 		unset($reg, $count, $head, $found, $scripts, $script, $pos);
 	}
 	
+	function _addscriptinheaderaftermootools($url, &$text, $first_script) {
+		// Get header
+		$reg = "/(<HEAD[^>]*>)(.*?)(<\/HEAD>)(.*)/si";
+		$count = preg_match_all($reg,$text,$html);	
+		if ($count>0) {
+			$head=$html[2][0];
+		} else {
+			$head='';
+		}
+		// clean browser if statements
+		$reg = "/<!--\[if(.*?)<!\[endif\]-->/si";
+		$head = preg_replace($reg, '', $head);
+
+		// define scripts regex
+		$reg = '/<script.*src=[\'\"](.*?)[\'\"][^>]*[^<]*(<\/script>)?/i';
+		$found = false;
+		
+		$count = preg_match_all($reg,$head,$scripts,PREG_OFFSET_CAPTURE | PREG_PATTERN_ORDER);	
+
+		if ($count>0)
+			foreach ($scripts[1] as $script) {
+				if ($script[0]==$url) {
+					$found = true;
+					break;
+				}
+			}
+			
+		if (!$found) {
+			$code = "\n<script type='text/javascript' src='".$url."'></script>\n";
+			if ($count==0) {
+				// No scripts then just add it before </head>
+				$this->_debug_log("Load only script on page");			
+				$text = preg_replace("/<head(| .*?)>(.*?)<\/head>/is", "<head$1>$2".$code."</head>", $text);
+			} else {
+				// Find mootools
+				$mootools = false;
+				$cnt = 0;
+				foreach ($scripts[1] as $script) {
+					if (strpos($script[0], "mootools")) {
+						$mootools = true;
+						break;
+					}
+					$cnt++;
+				}
+				
+				if($mootools) {
+					$this->_debug_log("Load script direct after mootools");			
+					$pos = strpos($text, trim($scripts[0][$cnt][0]))+strlen(trim($scripts[0][$cnt][0]));
+					$text = substr($text,0, $pos).$code.substr($text,$pos);
+				} else {
+					if ($first_script) {
+						// add script before the first script
+						// position first script
+						$this->_debug_log("Load script first");			
+						$pos = strpos($text, trim($scripts[0][0][0]));
+						$text = substr($text,0, $pos).$code.substr($text,$pos);
+					} else {
+						// add script after the last script
+						// position last script and add length
+						$this->_debug_log("Load script last");			
+						$pos = strpos($text, trim($scripts[0][$count-1][0]))+strlen(trim($scripts[0][$count-1][0]));
+						$text = substr($text,0, $pos).$code.substr($text,$pos);
+					}
+				}
+			}
+		}
+		
+		// Clean up variables
+		unset($reg, $count, $head, $found, $scripts, $script, $pos, $mootools, $code);
+	}
+
 	function _addstylesheet($url) {
 		// The method depends on event type. onAfterRender is complex and others are simple based on framework
 		if ($this->event!='onAfterRender')

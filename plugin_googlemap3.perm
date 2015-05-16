@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="1.6.0" type="plugin" group="system" method="upgrade">
+<extension version="2.5" type="plugin" group="system" method="upgrade">
 	<name>System - Google Maps</name>
 	<author>Mike Reumer</author>
-	<creationDate>July 2013</creationDate>
-	<copyright>(C) 2013 Reumer</copyright>
+	<creationDate>July 2014</creationDate>
+	<copyright>(C) 2014 Reumer</copyright>
 	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
 	<authorEmail>tech@reumer.net</authorEmail>
 	<authorUrl>tech.reumer.net</authorUrl>
-	<version>3.2</version>
+	<version>3.3</version>
 	<description>PLUGIN_GOOGLE_MAP3_INSTALLATION</description>
 	<files>
 		<filename plugin="plugin_googlemap3">plugin_googlemap3.php</filename>
@@ -19,22 +19,30 @@
 		<filename>plugin_googlemap3_twitteroauth.php</filename>
 		<filename>gpl.txt</filename>
 		<filename>index.html</filename>
+		<filename>/models/index.html</filename>
+		<filename>/models/fields/index.html</filename>
+		<filename>/models/fields/mediakey.php</filename>
+		<filename>language/en-GB/en-GB.plg_system_plugin_googlemap3.sys.ini</filename>
+		<filename>language/it-IT/it-IT.plg_system_plugin_googlemap3.sys.ini</filename>
+		<filename>language/es-ES/es-ES.plg_system_plugin_googlemap3.sys.ini</filename>
+		<filename>language/fr-FR/fr-FR.plg_system_plugin_googlemap3.sys.ini</filename>
+		<filename>language/sv-SE/sv-SE.plg_system_plugin_googlemap3.sys.ini</filename>
 	</files>
 	<media folder="media" destination="plugin_googlemap3">
 		<folder>site</folder>
 		<filename>index.html</filename>	
     </media>
 	<languages>
-	   <language tag="en-GB">language/en-GB.plg_system_plugin_googlemap3.ini</language>
-	   <language tag="en-GB">language/en-GB.plg_system_plugin_googlemap3.sys.ini</language>
-	   <language tag="it-IT">language/it-IT.plg_system_plugin_googlemap3.ini</language>
-	   <language tag="it-IT">language/it-IT.plg_system_plugin_googlemap3.sys.ini</language>
-	   <language tag="es-ES">language/es-ES.plg_system_plugin_googlemap3.ini</language>
-	   <language tag="es-ES">language/es-ES.plg_system_plugin_googlemap3.sys.ini</language>
-	   <language tag="fr-FR">language/fr-FR.plg_system_plugin_googlemap3.ini</language>
-	   <language tag="fr-FR">language/fr-FR.plg_system_plugin_googlemap3.sys.ini</language>
-	   <language tag="sv-SE">language/sv-SE.plg_system_plugin_googlemap3.ini</language>
-	   <language tag="sv-SE">language/sv-SE.plg_system_plugin_googlemap3.sys.ini</language>
+	   <language tag="en-GB">language/en-GB/en-GB.plg_system_plugin_googlemap3.ini</language>
+	   <language tag="en-GB">language/en-GB/en-GB.plg_system_plugin_googlemap3.sys.ini</language>
+	   <language tag="it-IT">language/it-IT/it-IT.plg_system_plugin_googlemap3.ini</language>
+	   <language tag="it-IT">language/it-IT/it-IT.plg_system_plugin_googlemap3.sys.ini</language>
+	   <language tag="es-ES">language/es-ES/es-ES.plg_system_plugin_googlemap3.ini</language>
+	   <language tag="es-ES">language/es-ES/es-ES.plg_system_plugin_googlemap3.sys.ini</language>
+	   <language tag="fr-FR">language/fr-FR/fr-FR.plg_system_plugin_googlemap3.ini</language>
+	   <language tag="fr-FR">language/fr-FR/fr-FR.plg_system_plugin_googlemap3.sys.ini</language>
+	   <language tag="sv-SE">language/sv-SE/sv-SE.plg_system_plugin_googlemap3.ini</language>
+	   <language tag="sv-SE">language/sv-SE/sv-SE.plg_system_plugin_googlemap3.sys.ini</language>
 	</languages>
 	<config>
 		<fields name="params">
@@ -58,10 +66,15 @@
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
+				<field name="signedin" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAP_SIGNEDIN" description="GOOGLEMAPS_TT_SIGNEDIN">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
 				<field name="show" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAP_SHOW" description="GOOGLEMAPS_TT_MAP_SHOW">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
+				<field name="mapprint" type="text" size= "30" default="icon" export='1' label="GOOGLEMAPS_MAP_MAPPRINT" description="GOOGLEMAPS_TT_MAP_MAPPRINT" />
 				<field name="mapclass" type="text" size= "40" default="" export='1' label="GOOGLEMAPS_MAP_CLASS" description="GOOGLEMAPS_TT_MAP_CLASS" />
 				<field name="mapcss" type="textarea" rows="3" cols="40" default="/* For img in the map remove borders, shadow, no margin and no max-width&#13;*/&#13;.map img, .svPanel img {&#13;    border: 0px;&#13;    box-shadow: none;&#13;    margin: 0px !important;&#13;    padding: 0px !important;&#13;    max-width: none !important;&#13;    background: none !important;&#13;}&#13;&#13;/* Make sure the directions are below the map&#13;*/&#13;.directions {&#13;    clear: left;&#13;}&#13;&#13;.adp-directions {&#13;    width: 100%;&#13;}&#13;&#13;/* Solve problems in chrome with the show of the direction steps in full width&#13;*/&#13;.adp-placemark {&#13;    width : 100%;&#13;}&#13;&#13;/* Padding for image overlay&#13;*/&#13;.controlDiv {&#13;    padding : 5px;&#13;}&#13;"  export='0' label="GOOGLEMAPS_MAPS_CSS" description="GOOGLEMAPS_TT_MAPS_CSS" />
 				<field name="loadmootools" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_LOADWITHMOOTOOLS" description="GOOGLEMAPS_TT_LOADWITHMOOTOOLS">
@@ -77,7 +90,6 @@
 				</field>
 				<field name="googlewebsite" type="list" size= "1" default="maps.google.com" export='1' label="GOOGLEMAPS_GOOGLEWEBSITE" description="GOOGLEMAPS_TT_GOOGLEWEBSITE">
 					<option value='maps.google.com'>United States - www.google.com (Default)</option>
-					<option value='maps.google.com'>United States - maps.google.com</option>
 					<option value='maps.google.com.af'>Afghanistan - maps.google.com.af</option>
 					<option value='maps.google.as'>American Samoa - maps.google.as</option>
 					<option value='maps.google.ad'>Andorra - maps.google.ad</option>
@@ -105,7 +117,7 @@
 					<option value='maps.google.kh'>Cambodia - maps.google.kh</option>
 					<option value='maps.google.ca'>Canada - maps.google.ca</option>
 					<option value='maps.google.cl'>Chile - maps.google.cl</option>
-					<option value='maps.google.cn'>China - maps.google.cn</option>
+					<option value='ditu.google.cn'>China - ditu.google.cn</option>
 					<option value='maps.google.com.co'>Colombia - maps.google.com.co</option>
 					<option value='maps.google.co.ck'>Cook Islands - maps.google.co.ck</option>
 					<option value='maps.google.co.cr'>Costa Rica - maps.google.co.cr</option>
@@ -263,18 +275,15 @@
 				<field name="centerlat" type="text" size= "15" default="" export='1' label="GOOGLEMAPS_MAPS_CENTERLAT" description="GOOGLEMAPS_TT_MAPS_CENTERLAT" />
 				<field name="centerlon" type="text" size= "15" default="" export='1' label="GOOGLEMAPS_MAPS_CENTERLNG" description="GOOGLEMAPS_TT_MAPS_CENTERLNG" />
 				<field name="address" type="text" size="60" maxsize="255" default="" export='1' label="GOOGLEMAPS_MAPS_ADRESS" description="GOOGLEMAPS_TT_MAPS_ADRESS" />
-				<field name="latitudeid" type="text" size= "30" default="" export='1' label="GOOGLEMAPS_MAPS_LATITUDEID" description="GOOGLEMAPS_TT_MAPS_LATITUDEID" />
-				<field name="latitudedesc" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAPS_LATITUDEDESC" description="GOOGLEMAPS_TT_MAPS_LATITUDEDESC">
-					<option value="1">Yes</option>
-					<option value="0">No</option>
-				</field>		
-				<field name="latitudecoord" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_LATITUDECOORD" description="GOOGLEMAPS_TT_MAPS_LATITUDECOORD">
+				<field name="geoloc" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_GEOLOC" description="GOOGLEMAPS_TT_MAPS_GEOLOC">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
-				<field name="latitudeform" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_LATITUDEFORM" description="GOOGLEMAPS_TT_MAPS_LATITUDEFORM">
-					<option value="1">Yes</option>
+				<field name="geocenter" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_GEOCENTER" description="GOOGLEMAPS_TT_MAPS_GEOCENTER">
 					<option value="0">No</option>
+					<option value="1">GOOGLEMAPS_MAPS_GEOCENTER_CENTER</option>
+					<option value="2">GOOGLEMAPS_MAPS_GEOCENTER_BOUNDS</option>
+					<option value="3">GOOGLEMAPS_MAPS_GEOCENTER_DIREC</option>
 				</field>
 			</fieldset>
 			<fieldset name="GOOGLEMAP_CONTROL">
@@ -413,7 +422,6 @@
 					<option value="Satellite">GOOGLEMAPS_MAPS_MAPTYPESATELLITE</option>
 					<option value="Hybrid">GOOGLEMAPS_MAPS_MAPTYPEHYBRID</option>
 					<option value="Terrain">GOOGLEMAPS_MAPS_MAPTYPETERRAIN</option>
-					<option value="Earth">GOOGLEMAPS_MAPS_MAPTYPEEARTH</option>
 				</field>
 				<field name="showmaptype" type="radio" size= "1" export='1' default="1" label="GOOGLEMAPS_MAPS_SHOWMAPTYPE" description="GOOGLEMAPS_TT_MAPS_SHOWMAPTYPE">
 					<option value="0">GOOGLEMAPS_MAPS_SHOWMAPTYPENONE</option>
@@ -437,10 +445,6 @@
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
-				<field name="showEarthMaptype" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAPS_SHOWEARTH" description="GOOGLEMAPS_MAPS_TT_SHOWEARTH">
-					<option value="1">Yes</option>
-					<option value="0">No</option>
-				</field>
 				<field name="showscale" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_SCALE" description="GOOGLEMAPS_TT_MAPS_SCALE">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
@@ -459,13 +463,13 @@
 				<option value="0">GOOGLEMAPS_MAPS_INFOWINDOWCLOSED</option>
 				</field>
 			</fieldset>
-			<fieldset name="GOOGLEMAP_ICON">
-				<field name="icon" type="text" size="60" maxsize="255" default="" export='1' label="GOOGLEMAPS_ICONS_IMAGE" description="GOOGLEMAPS_TT_ICONS_IMAGE" />
+			<fieldset name="GOOGLEMAP_ICON"  addfieldpath="/plugins/system/plugin_googlemap3/models/fields">
+				<field name="icon" type="Mediakey" size="60" maxsize="255" default="" export='1' preview="true" label="GOOGLEMAPS_ICONS_IMAGE" description="GOOGLEMAPS_TT_ICONS_IMAGE" />
 				<field name="iconwidth" type="text" size= "3" default="" export='1' label="GOOGLEMAPS_ICONS_WIDTH" description="GOOGLEMAPS_TT_ICONS_WIDTH" />
 				<field name="iconheight" type="text" size= "3" default="" export='1' label="GOOGLEMAPS_ICONS_HEIGHT" description="GOOGLEMAPS_TT_ICONS_HEIGHT" />
 				<field name="iconanchorx" type="text" size= "3" default="" export='1' label="GOOGLEMAPS_ICONS_ANCHORX" description="GOOGLEMAPS_TT_ICONS_ANCHORX" />
 				<field name="iconanchory" type="text" size= "3" default="" export='1' label="GOOGLEMAPS_ICONS_ANCHORY" description="GOOGLEMAPS_TT_ICONS_ANCHORY" />
-				<field name="iconshadow" type="text" size="60" maxsize="255" default="" export='1' label="GOOGLEMAPS_ICONS_SHADOW" description="GOOGLEMAPS_TT_ICONS_SHADOW" />
+				<field name="iconshadow" type="Mediakey" size="60" maxsize="255" default="" export='1' preview="true" label="GOOGLEMAPS_ICONS_SHADOW" description="GOOGLEMAPS_TT_ICONS_SHADOW" />
 				<field name="iconshadowwidth" type="text" size= "3" default="" export='1' label="GOOGLEMAPS_ICONS_SHADOWWIDTH" description="GOOGLEMAPS_TT_ICONS_SHADOWWIDTH" />
 				<field name="iconshadowheight" type="text" size= "3" default="" export='1' label="GOOGLEMAPS_ICONS_SHADOWHEIGHT" description="GOOGLEMAPS_TT_ICONS_SHADOWHEIGHT" />
 				<field name="iconimagemap" type="textarea" rows="5" cols="40" default="" export='1' label="GOOGLEMAPS_ICONS_IMAGEMAP" description="GOOGLEMAPS_TT_ICONS_IMAGEMAP" />
@@ -634,7 +638,7 @@
 					<option value="geocode">GOOGLEMAPS_MAPS_AUTOCOMPL_GEOCODE</option>
 					<option value="both">GOOGLEMAPS_MAPS_AUTOCOMPL_BOTH</option>
 				</field>
-				<field name="langanim" type="textarea" filter="raw" rows="3" cols="40" default="en;The requested panorama could not be displayed|Could not generate a route for the current start and end addresses|Street View coverage is not available for this route|You have reached your destination|miles|miles|ft|kilometers|kilometer|meters|In|You will reach your destination|Stop|Drive|Press Drive to follow your route|Route|Speed|Fast|Medium|Slow" export='0' label="GOOGLEMAPS_MAPS_LANGANIM" description="GOOGLEMAPS_TT_MAPS_LANGANIM" />
+				<field name="langanim" type="textarea" filter="raw" rows="3" cols="40" default="en-GB;The requested panorama could not be displayed|Could not generate a route for the current start and end addresses|Street View coverage is not available for this route|You have reached your destination|miles|miles|ft|kilometers|kilometer|meters|In|You will reach your destination|Stop|Drive|Press Drive to follow your route|Route|Speed|Fast|Medium|Slow" export='0' label="GOOGLEMAPS_MAPS_LANGANIM" description="GOOGLEMAPS_TT_MAPS_LANGANIM" />
 				<field name="txtdir" type="textarea" filter="raw" rows="3" cols="40" default="Directions: " export='1' label="GOOGLEMAPS_MAPS_TITLEDIR" description="GOOGLEMAPS_TT_MAPS_TITLEDIR" />
 				<field name="txtgetdir" type="textarea" filter="raw" rows="3" cols="40" default="Get Directions" export='1' label="GOOGLEMAPS_MAPS_BUTTONDIR" description="GOOGLEMAPS_TT_MAPS_BUTTONDIR" />
 				<field name="txtfrom" type="textarea" filter="raw" rows="3" cols="40" default="" export='1' label="GOOGLEMAPS_MAPS_TXTFROMDIR" description="GOOGLEMAPS_TT_MAPS_TXTFROMDIR" />
@@ -681,6 +685,7 @@
 					<option value="1">1</option>
 					<option value="0">0</option>
 				</field>
+				<field name="gotoaddrtimeout" type="text" size= "6" default="5000" export='1' label="GOOGLEMAPS_MAPS_GOTOTIMEOUT" description="GOOGLEMAPS_TT_MAPS_GOTOTIMEOUT" />
 				<field name="txtaddr" type="textarea" filter="raw" rows="3" cols="40" default="Address: ##" export='1' label="GOOGLEMAPS_MAPS_TXTADDRESSINFOWINDOW" description="GOOGLEMAPS_TT_MAPS_TXTADDRESSINFOWINDOW" />
 				<field name="erraddr" type="textarea" filter="raw" rows="3" cols="40" default="Address ## not found!" export='1' label="GOOGLEMAPS_MAPS_ADDRERRTXT" description="GOOGLEMAPS_TT_MAPS_ADDRERRTXT" />
 				<field name="txtgotoaddr" type="textarea" rows="3" cols="40" default="Goto" export='1' label="GOOGLEMAPS_MAPS_TXTGOTOADDR" description="GOOGLEMAPS_TT_MAPS_TXTGOTOADDR" />
@@ -743,26 +748,7 @@
 					<option value="0">No</option>
 				</field>
 			</fieldset>
-			<fieldset name="GOOGLEMAP_EARTH">
-				<field name="earthtimeout" type="text" size= "4" default="300" export='1' label="GOOGLEMAPS_MAPS_EARTHTIMEOUT" description="GOOGLEMAPS_TT_MAPS_EARTHTIMEOUT" />
-				<field name="earthborders" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAPS_EARTHBORDERS" description="GOOGLEMAPS_TT_MAPS_EARTHBORDERS">
-					<option value="1">Yes</option>
-					<option value="0">No</option>
-				</field>
-				<field name="earthbuildings" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_EARTHBUILDINGS" description="GOOGLEMAPS_TT_MAPS_EARTHBUILDINGS">
-					<option value="1">Yes</option>
-					<option value="0">No</option>
-				</field>
-				<field name="earthroads" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_EARTHROADS" description="GOOGLEMAPS_TT_MAPS_EARTHROADS">
-					<option value="1">Yes</option>
-					<option value="0">No</option>
-				</field>
-				<field name="earthterrain" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_EARTHTERRAIN" description="GOOGLEMAPS_TT_MAPS_EARTHTERRAIN">
-					<option value="1">Yes</option>
-					<option value="0">No</option>
-				</field>
-			</fieldset>
-			<fieldset name="GOOGLEMAP_KML">
+			<fieldset name="GOOGLEMAP_KML" addfieldpath="/plugins/system/plugin_googlemap3/models/fields">
 				<field name="kmlrenderer" type="list" size= "3" default="google" export='1' label="GOOGLEMAPS_MAPS_KMLRENDERER" description="GOOGLEMAPS_TT_MAPS_KMLRENDERER">
 					<option value="google">GOOGLEMAPS_MAPS_KMLRENDERERGOOGLE</option>
 					<option value="geoxml">GOOGLEMAPS_MAPS_KMLRENDERERGEOXML</option>
@@ -865,7 +851,7 @@
 				<field name="txtsearchnearby" type="textarea" rows="3" cols="40" default="" export='1' label="GOOGLEMAPS_MAPS_TXTSEARCHNEARBY" description="GOOGLEMAPS_TT_MAPS_TXTSEARCHNEARBY" />
 				<field name="txtsearch" type="textarea" rows="3" cols="40" default="" export='1' label="GOOGLEMAPS_MAPS_TXTSEARCH" description="GOOGLEMAPS_TT_MAPS_TXTSEARCH" />	
 				<field name="maxcluster" type="text" size= "3" default="" export='1' label="GOOGLEMAPS_MAPS_CLUSTERMAXMARKERS" description="GOOGLEMAPS_TT_MAPS_CLUSTERMAXMARKERS" />
-				<field name="clustericonurl" type="text" size="60" maxsize="255" default="/media/plugin_googlemap3/site/geoxmlv3/images/m" export='1' label="GOOGLEMAPS_CLUSTER_ICON_URL" description="GOOGLEMAPS_TT_CLUSTER_ICON_URL" />
+				<field name="clustericonurl" type="Mediakey" size="60" maxsize="255" default="/media/plugin_googlemap3/site/geoxmlv3/images/m" export='1' preview="true" label="GOOGLEMAPS_CLUSTER_ICON_URL" description="GOOGLEMAPS_TT_CLUSTER_ICON_URL" />
 				<field name="gridsize" type="text" size= "3" default="" export='1' label="GOOGLEMAPS_MAPS_CLUSTERGRIDSIZE" description="GOOGLEMAPS_TT_MAPS_CLUSTERGRIDSIZE" />
 				<field name="minmarkerscluster" type="text" size= "2" default="" export='1' label="GOOGLEMAPS_MAPS_CLUSTERMINMARKERS" description="GOOGLEMAPS_TT_MAPS_CLUSTERMINMARKERS" />
 				<field name="maxlinesinfocluster" type="text" size= "4" default="" export='1' label="GOOGLEMAPS_MAPS_CLUSTERINFOMAXLINES" description="GOOGLEMAPS_TT_MAPS_CLUSTERINFOMAXLINES" />
@@ -963,8 +949,8 @@
 					<option value="0">0</option>
 				</field>
 			</fieldset>
-			<fieldset name="GOOGLEMAP_IMAGEOVERLAY">
-				<field name="imageurl" type="text" size="60" maxsize="255" default="" export='1' label="GOOGLEMAPS_IMAGE_IMAGE_URL" description="GOOGLEMAPS_TT_IMAGE_URL" />
+			<fieldset name="GOOGLEMAP_IMAGEOVERLAY" addfieldpath="/plugins/system/plugin_googlemap3/models/fields">
+				<field name="imageurl" type="Mediakey" size="60" maxsize="255" default="" export='1' preview="true" label="GOOGLEMAPS_IMAGE_IMAGE_URL" description="GOOGLEMAPS_TT_IMAGE_URL" />
 				<field name="imageposition" type="list" size="1" default="RIGHT_TOP" export='1' label="GOOGLEMAPS_IMAGE_POS" description="GOOGLEMAPS_TT_IMAGE_POS">
 					<option value="TOP_CENTER">GOOGLEMAPS_IMAGE_TOP_CENTER</option>
 					<option value="TOP_LEFT">GOOGLEMAPS_IMAGE_TOP_LEFT</option>
@@ -983,10 +969,10 @@
 				<field name="imagewidth" type="text" size= "3" default="" export='1' label="GOOGLEMAPS_IMAGE_WIDTH" description="GOOGLEMAPS_TT_IMAGE_WIDTH" />
 				<field name="imageheight" type="text" size= "3" default="" export='1' label="GOOGLEMAPS_IMAGE_HEIGHT" description="GOOGLEMAPS_TT_IMAGE_HEIGHT" />
 			</fieldset>
-			<fieldset name="GOOGLEMAP_TWITTER">
+			<fieldset name="GOOGLEMAP_TWITTER" addfieldpath="/plugins/system/plugin_googlemap3/models/fields">
 				<field name="twittername" type="text" size= "60" default="" export='1' label="GOOGLEMAPS_TWITTER_NAME" description="GOOGLEMAPS_TT_TWITTER_NAME" />
 				<field name="twittertweets" type="text" size= "3" default="15" export='1' label="GOOGLEMAPS_TWITTER_TWEETS" description="GOOGLEMAPS_TT_TWITTER_TWEETS" />
-				<field name="twittericon" type="text" size="60" maxsize="255" default="/media/plugin_googlemap3/site/Twitter/twitter_map_icon.png" export='1' label="GOOGLEMAPS_TWITTER_ICON" description="GOOGLEMAPS_TT_TWITTER_ICON" />
+				<field name="twittericon" type="Mediakey" size="60" maxsize="255" default="/media/plugin_googlemap3/site/Twitter/twitter_map_icon.png" export='1' preview="true" label="GOOGLEMAPS_TWITTER_ICON" description="GOOGLEMAPS_TT_TWITTER_ICON" />
 				<field name="twitterline" type="text" size= "10" default="#ff0000ff" export='1' label="GOOGLEMAPS_TWITTER_LINE" description="GOOGLEMAPS_TT_TWITTER_LINE" />
 				<field name="twitterlinewidth" type="text" size= "2" default="4" export='1' label="GOOGLEMAPS_TWITTER_LINEWIDTH" description="GOOGLEMAPS_TT_TWITTER_LINEWIDTH" />
 				<field name="twitterstartloc" type="text" size= "30" default="0,0,0" export='1' label="GOOGLEMAPS_TWITTER_STARTLOC" description="GOOGLEMAPS_TT_TWITTER_STARTLOC" />
