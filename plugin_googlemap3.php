@@ -31,6 +31,9 @@ class plgSystemPlugin_googlemap3 extends JPlugin
 	var $event;
 	var $helper;
 	
+	protected $app;
+	protected $db;
+	
 	/**
 	 * Constructor
 	 *
@@ -91,8 +94,7 @@ class plgSystemPlugin_googlemap3 extends JPlugin
 	{
 		$this->event = 'onContentPrepare';
 		
-		$app = JFactory::getApplication();
-		if(!$app->isSite()) {
+		if(!$this->app->isSite()) {
 			return;
 		}
 		
@@ -115,7 +117,7 @@ class plgSystemPlugin_googlemap3 extends JPlugin
 		if ( !$this->publ ||($this->doctype=='pdf'||$this->doctype=='feed') ) {
 			$text = preg_replace( $this->regex, '', $text );
 			$introtext = preg_replace( $this->regex, '', $introtext );
-			unset($app, $text, $introtext);
+			unset($text, $introtext);
 			return true;
 		}
 		
@@ -125,7 +127,7 @@ class plgSystemPlugin_googlemap3 extends JPlugin
 		// $this->_replace( $introtext );
 		
 		// Clean up variables
-		unset($app, $text, $introtext);
+		unset($text, $introtext);
 	}
 	
 	/**
@@ -143,8 +145,7 @@ class plgSystemPlugin_googlemap3 extends JPlugin
 	{
 		$this->event = 'onAfterDispatch';
 		
-		$app = JFactory::getApplication();
-		if(!$app->isSite()) {
+		if(!$this->app->isSite()) {
 			return;
 		}
 		
@@ -158,7 +159,7 @@ class plgSystemPlugin_googlemap3 extends JPlugin
 				$text = preg_replace( $this->regex, '', $text );
 			}
 			// Clean up variables
-			unset($app, $item, $text);
+			unset($item, $text);
 			return true;
 		}
 		
@@ -168,7 +169,7 @@ class plgSystemPlugin_googlemap3 extends JPlugin
 			$text = preg_replace( $this->regex, '', $text );
 			$this->document->setBuffer($text, "component"); 
 			// Clean up variables
-			unset($app, $item, $text);
+			unset($item, $text);
 			return true;
 		}
 		
@@ -185,7 +186,7 @@ class plgSystemPlugin_googlemap3 extends JPlugin
 		}
 		
 		// Clean up variables
-		unset($app, $item, $text);
+		unset($item, $text);
 	}
 	
 	/**
@@ -195,8 +196,7 @@ class plgSystemPlugin_googlemap3 extends JPlugin
 	{
 		$this->event = 'onAfterRender';
 		
-		$app = JFactory::getApplication();
-		if(!$app->isSite()) {
+		if(!$this->app->isSite()) {
 			return;
 		}
 		
@@ -212,7 +212,7 @@ class plgSystemPlugin_googlemap3 extends JPlugin
 			// Set the body text with the replaced result
 			JResponse::setBody($text);
 			// Clean up variables
-			unset($app, $text);
+			unset($text);
 			return true;
 		}
 		
@@ -222,7 +222,7 @@ class plgSystemPlugin_googlemap3 extends JPlugin
 			// Set the body text with the replaced result
 			JResponse::setBody($text);
 			// Clean up variables
-			unset($app, $text);
+			unset($text);
 			return true;
 		}
 		
@@ -238,7 +238,7 @@ class plgSystemPlugin_googlemap3 extends JPlugin
 		}
 		
 		// Clean up variables
-		unset($app, $text);
+		unset($text);
 	}
 	
 	function _getdoc() {
@@ -362,8 +362,7 @@ class plgSystemPlugin_googlemap3 extends JPlugin
 	}
 	
 	function _restore_permanent_defaults() {
-		$app = JFactory::getApplication();
-		if($app->isSite()) {
+		if($this->app->isSite()) {
 			return;
 		}
 		if ($this->params->get( 'publ', '' )!='') {
