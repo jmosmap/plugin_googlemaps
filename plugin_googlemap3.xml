@@ -48,44 +48,44 @@
 	<config>
 		<fields name="params">
 			<fieldset name="GOOGLEMAP_BASIC">
-				<field name="publ" type="radio" size="1" default="" export='0' label="Published" description="GOOGLEMAP_TT_CONFIG_PUBLISHED">
+				<field name="publ" type="radio" size="1" default="" export='0' label="Published" description="GOOGLEMAP_TT_CONFIG_PUBLISHED" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
-				<field name="debug" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_DEBUG" description="GOOGLEMAPS_TT_MAPS_DEBUG">
+				<field name="debug" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_DEBUG" description="GOOGLEMAPS_TT_MAPS_DEBUG" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
 				<field name="plugincode" type="text" size= "40" default="mosmap" export='0' label="GOOGLEMAPS_PLUGINCODE" description="GOOGLEMAPS_TT_PLUGINCODE" />
-				<field name="brackets" type="radio" size= "1" default="{" export='0' label="GOOGLEMAPS_BRACKETS" description="GOOGLEMAPS_TT_BRACKETS">
+				<field name="brackets" type="radio" size= "1" default="{" export='0' label="GOOGLEMAPS_BRACKETS" description="GOOGLEMAPS_TT_BRACKETS" class="btn-group">
 					<option value="{">{}</option>
 					<option value="[">[]</option>
 					<option value="both">GOOGLEMAPS_BRACKETS_BOTH</option>
 				</field>
 				<field name="Google_API_version" type="text" size= "5" default="3" export='0' label="GOOGLEMAPS_GOOGLEAPIVERSION" description="GOOGLEMAPS_TT_GOOGLEAPIVERSION" />
-				<field name="visualrefresh" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAP_VISUALREFRESH" description="GOOGLEMAPS_TT_VISUALREFRESH">
+				<field name="visualrefresh" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAP_VISUALREFRESH" description="GOOGLEMAPS_TT_VISUALREFRESH" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
-				<field name="signedin" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAP_SIGNEDIN" description="GOOGLEMAPS_TT_SIGNEDIN">
+				<field name="signedin" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAP_SIGNEDIN" description="GOOGLEMAPS_TT_SIGNEDIN" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
-				<field name="show" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAP_SHOW" description="GOOGLEMAPS_TT_MAP_SHOW">
+				<field name="show" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAP_SHOW" description="GOOGLEMAPS_TT_MAP_SHOW" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
 				<field name="mapclass" type="text" size= "40" default="" export='1' label="GOOGLEMAPS_MAP_CLASS" description="GOOGLEMAPS_TT_MAP_CLASS" />
 				<field name="mapprint" type="text" size= "30" default="icon" export='1' label="GOOGLEMAPS_MAP_MAPPRINT" description="GOOGLEMAPS_TT_MAP_MAPPRINT" />
 				<field name="mapcss" type="textarea" rows="3" cols="40" default="/* For img in the map remove borders, shadow, no margin and no max-width&#13;*/&#13;.map img, .svPanel img {&#13;    border: 0px;&#13;    box-shadow: none;&#13;    margin: 0px !important;&#13;    padding: 0px !important;&#13;    max-width: none !important;&#13;    background: none !important;&#13;}&#13;&#13;/* Make sure the directions are below the map&#13;*/&#13;.directions {&#13;    clear: left;&#13;}&#13;&#13;.adp-directions {&#13;    width: 100%;&#13;}&#13;&#13;/* Solve problems in chrome with the show of the direction steps in full width&#13;*/&#13;.adp-placemark {&#13;    width : 100%;&#13;}&#13;&#13;/* Padding for image overlay&#13;*/&#13;.controlDiv {&#13;    padding : 5px;&#13;}&#13;" export='0' label="GOOGLEMAPS_MAPS_CSS" description="GOOGLEMAPS_TT_MAPS_CSS" />
-				<field name="loadmootools" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_LOADWITHMOOTOOLS" description="GOOGLEMAPS_TT_LOADWITHMOOTOOLS">
+				<field name="loadmootools" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_LOADWITHMOOTOOLS" description="GOOGLEMAPS_TT_LOADWITHMOOTOOLS" class="btn-group">
 					<option value="1">GOOGLEMAPS_LOADWITHMOOTOOLSMOOTOOLS</option>
 					<option value="0">GOOGLEMAPS_LOADWITHMOOTOOLSTIMEINTERVAL</option>
 				</field>
 				<field name="timeinterval" type="text" size= "4" default="500" export='1' label="GOOGLEMAPS_TIMEINTERVAL" description="GOOGLEMAPS_TT_TIMEINTERVAL" />
 				<field name="Google_API_key" type="text" size="60" maxsize="255" default="" export='0' label="GOOGLEMAPS_API_KEY" description="GOOGLEMAPS_TT_API_KEY" />
 				<field name="Google_Multi_API_key" type="textarea" rows="5" cols="40" default="" export='0' label="GOOGLEMAPS_MULTI_API_KEY" description="GOOGLEMAPS_TT_MULTI_API_KEY" />
-				<field name="urlsetting" type="radio" size= "1" default="http_host" export='0' label="GOOGLEMAPS_URLWEBSITE" description="GOOGLEMAPS_TT_URLWEBSITE">
+				<field name="urlsetting" type="radio" size= "1" default="http_host" export='0' label="GOOGLEMAPS_URLWEBSITE" description="GOOGLEMAPS_TT_URLWEBSITE" class="btn-group">
 					<option value="Joomla">GOOGLEMAPS_URLWEBSITE_JOOMLA</option>
 					<option value="http_host">HTTP_HOST</option>
 				</field>
@@ -249,13 +249,13 @@
 					<option value='maps.google.co.uk'>United Kingdom - maps.google.co.uk</option>
 				</field>
 				<field name="styledmap" type="textarea" rows="5" cols="40" default="" export='1' label="GOOGLEMAPS_MAPS_STYLEDMAP" description="GOOGLEMAPS_TT_MAPS_STYLEDMAP" />
-				<field name="align" type="list" size= "4" default="center" export='1' label="GOOGLEMAPS_MAPS_ALIGN" description="GOOGLEMAPS_TT_MAPS_ALIGN">
+				<field name="align" type="radio" size= "4" default="center" export='1' label="GOOGLEMAPS_MAPS_ALIGN" description="GOOGLEMAPS_TT_MAPS_ALIGN" class="btn-group">
 					<option value="left">GOOGLEMAPS_MAPS_ALIGNLEFT</option>
 					<option value="center">GOOGLEMAPS_MAPS_ALIGNCENTER</option>
 					<option value="right">GOOGLEMAPS_MAPS_ALIGNRIGHT</option>
 					<option value="none">GOOGLEMAPS_MAPS_ALIGNNONE</option>
 				</field>
-				<field name="langtype" type="list" size="1" default="site" export='0' label="GOOGLEMAPS_LANGUAGE_OPTION" description="GOOGLEMAPS_TT_LANGUAGE_OPTION">
+				<field name="langtype" type="radio" size="1" default="site" export='0' label="GOOGLEMAPS_LANGUAGE_OPTION" description="GOOGLEMAPS_TT_LANGUAGE_OPTION" class="btn-group">
 					<option value="site">GOOGLEMAPS_LANGTYPE_SITE</option>
 					<option value="joomfish">GOOGLEMAPS_LANGTYPE_JOOMFISH</option>
 					<option value="user">GOOGLEMAPS_LANGTYPE_USER</option>
@@ -264,7 +264,7 @@
 				<field name="lang" type="text" size= "5" default="" export='0' label="GOOGLEMAPS_LANGUAGE" description="GOOGLEMAPS_TT_LANGUAGE" />
 				<field name="width" type="text" size= "10" default="500" export='1' label="GOOGLEMAPS_MAPS_WIDTH" description="GOOGLEMAPS_TT_MAPS_WIDTH" />
 				<field name="height" type="text" size= "10" default="400" export='1' label="GOOGLEMAPS_MAPS_HEIGHT" description="GOOGLEMAPS_TT_MAPS_HEIGHT" />
-				<field name="effect" type="radio" size= "1" default="none" export='1' label="GOOGLEMAPS_MAPS_EFFECT" description="GOOGLEMAPS_TT_MAPS_EFFECT">
+				<field name="effect" type="radio" size= "1" default="none" export='1' label="GOOGLEMAPS_MAPS_EFFECT" description="GOOGLEMAPS_TT_MAPS_EFFECT" class="btn-group">
 					<option value="none">GOOGLEMAPS_MAPS_EFFECTNONE</option>
 					<option value="horizontal">GOOGLEMAPS_MAPS_EFFECTHORZ</option>
 					<option value="vertical">GOOGLEMAPS_MAPS_EFFECTVERT</option>
@@ -276,11 +276,11 @@
 				<field name="centerlat" type="text" size= "15" default="" export='1' label="GOOGLEMAPS_MAPS_CENTERLAT" description="GOOGLEMAPS_TT_MAPS_CENTERLAT" />
 				<field name="centerlon" type="text" size= "15" default="" export='1' label="GOOGLEMAPS_MAPS_CENTERLNG" description="GOOGLEMAPS_TT_MAPS_CENTERLNG" />
 				<field name="address" type="text" size="60" maxsize="255" default="" export='1' label="GOOGLEMAPS_MAPS_ADRESS" description="GOOGLEMAPS_TT_MAPS_ADRESS" />
-				<field name="geoloc" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_GEOLOC" description="GOOGLEMAPS_TT_MAPS_GEOLOC">
+				<field name="geoloc" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_GEOLOC" description="GOOGLEMAPS_TT_MAPS_GEOLOC" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
-				<field name="geocenter" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_GEOCENTER" description="GOOGLEMAPS_TT_MAPS_GEOCENTER">
+				<field name="geocenter" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_GEOCENTER" description="GOOGLEMAPS_TT_MAPS_GEOCENTER" class="btn-group">
 					<option value="0">No</option>
 					<option value="1">GOOGLEMAPS_MAPS_GEOCENTER_CENTER</option>
 					<option value="2">GOOGLEMAPS_MAPS_GEOCENTER_BOUNDS</option>
@@ -288,22 +288,22 @@
 				</field>
 			</fieldset>
 			<fieldset name="GOOGLEMAP_CONTROL">
-				<field name="controltype" type="radio" size= "5" default="UI" export='1' label="GOOGLEMAPS_MAPS_CONTROLTYPE" description="GOOGLEMAPS_TT_MAPS_CONTROLTYPE">
+				<field name="controltype" type="radio" size= "5" default="UI" export='1' label="GOOGLEMAPS_MAPS_CONTROLTYPE" description="GOOGLEMAPS_TT_MAPS_CONTROLTYPE" class="btn-group">
 					<option value="UI">GOOGLEMAPS_MAPS_CONTROLTYPEAUTOMATIC</option>
 					<option value="user">GOOGLEMAPS_MAPS_CONTROLTYPEUSER</option>
 				</field>
-				<field name="zoomType" type="radio" size= "10" default="3D-large" export='1' label="GOOGLEMAPS_MAPS_MAPCONTROL" description="GOOGLEMAPS_TT_MAPS_MAPCONTROL">
+				<field name="zoomType" type="radio" size= "10" default="3D-large" export='1' label="GOOGLEMAPS_MAPS_MAPCONTROL" description="GOOGLEMAPS_TT_MAPS_MAPCONTROL" class="btn-group">
 					<option value="Large">GOOGLEMAPS_MAPS_MAPCONTROLLARGE</option>
 					<option value="Small">GOOGLEMAPS_MAPS_MAPCONTROLSMALL</option>
 					<option value="3D-large">GOOGLEMAPS_MAPS_MAPCONTROL3DLARGE</option>
 					<option value="3D-small">GOOGLEMAPS_MAPS_MAPCONTROL3DSMALL</option>
 					<option value="None">GOOGLEMAPS_MAPS_MAPCONTROLNONE</option>
 				</field>
-				<field name="svcontrol" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAPS_SVCONTROL" description="GOOGLEMAPS_TT_MAPS_SVCONTROL">
+				<field name="svcontrol" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAPS_SVCONTROL" description="GOOGLEMAPS_TT_MAPS_SVCONTROL" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
-				<field name="returncontrol" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAPS_RETCONTROL" description="GOOGLEMAPS_TT_MAPS_RETCONTROL">
+				<field name="returncontrol" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAPS_RETCONTROL" description="GOOGLEMAPS_TT_MAPS_RETCONTROL" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>		
@@ -402,64 +402,64 @@
 					<option value="1">1</option>
 					<option value="0">0</option>
 				</field>
-				<field name="rotation" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAPS_ROTATION" description="GOOGLEMAPS_TT_MAPS_ROTATION">
+				<field name="rotation" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAPS_ROTATION" description="GOOGLEMAPS_TT_MAPS_ROTATION" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>		
-				<field name="zoomnew" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_ZOOMNEW" description="GOOGLEMAPS_TT_MAPS_ZOOMNEW">
+				<field name="zoomnew" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_ZOOMNEW" description="GOOGLEMAPS_TT_MAPS_ZOOMNEW" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
-				<field name="zoomWheel" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_MOUSEWHEEL" description="GOOGLEMAPS_TT_MAPS_MOUSEWHEEL">
+				<field name="zoomWheel" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_MOUSEWHEEL" description="GOOGLEMAPS_TT_MAPS_MOUSEWHEEL" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
-				<field name="keyboard" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_KEYBOARD" description="GOOGLEMAPS_TT_MAPS_KEYBOARD">
+				<field name="keyboard" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_KEYBOARD" description="GOOGLEMAPS_TT_MAPS_KEYBOARD" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
-				<field name="mapType" type="radio" size= "9" default="Normal" export='1' label="GOOGLEMAPS_MAPS_MAPTYPE" description="GOOGLEMAPS_TT_MAPS_MAPTYPE">
+				<field name="mapType" type="radio" size= "9" default="Normal" export='1' label="GOOGLEMAPS_MAPS_MAPTYPE" description="GOOGLEMAPS_TT_MAPS_MAPTYPE" class="btn-group">
 					<option value="Normal">GOOGLEMAPS_MAPS_MAPTYPENORMAL</option>
 					<option value="Satellite">GOOGLEMAPS_MAPS_MAPTYPESATELLITE</option>
 					<option value="Hybrid">GOOGLEMAPS_MAPS_MAPTYPEHYBRID</option>
 					<option value="Terrain">GOOGLEMAPS_MAPS_MAPTYPETERRAIN</option>
 				</field>
-				<field name="showmaptype" type="radio" size= "1" export='1' default="1" label="GOOGLEMAPS_MAPS_SHOWMAPTYPE" description="GOOGLEMAPS_TT_MAPS_SHOWMAPTYPE">
+				<field name="showmaptype" type="radio" size= "1" export='1' default="1" label="GOOGLEMAPS_MAPS_SHOWMAPTYPE" description="GOOGLEMAPS_TT_MAPS_SHOWMAPTYPE" class="btn-group">
 					<option value="0">GOOGLEMAPS_MAPS_SHOWMAPTYPENONE</option>
 					<option value="1">GOOGLEMAPS_MAPS_SHOWMAPTYPEHORZMENU</option>
 					<option value="2">GOOGLEMAPS_MAPS_SHOWMAPTYPEHIERMENU</option>
 					<option value="3">GOOGLEMAPS_MAPS_SHOWMAPTYPEVERTMENU</option>
 				</field>
-				<field name="showNormalMaptype" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAPS_SHOWNORMAL" description="GOOGLEMAPS_MAPS_TT_SHOWNORMAL">
+				<field name="showNormalMaptype" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAPS_SHOWNORMAL" description="GOOGLEMAPS_MAPS_TT_SHOWNORMAL" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
-				<field name="showSatelliteMaptype" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAPS_SHOWSATELLITE" description="GOOGLEMAPS_MAPS_TT_SHOWSATELLITE">
+				<field name="showSatelliteMaptype" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAPS_SHOWSATELLITE" description="GOOGLEMAPS_MAPS_TT_SHOWSATELLITE" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
-				<field name="showHybridMaptype" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAPS_SHOWHYBRID" description="GOOGLEMAPS_MAPS_TT_SHOWHYBRID">
+				<field name="showHybridMaptype" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAPS_SHOWHYBRID" description="GOOGLEMAPS_MAPS_TT_SHOWHYBRID" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
-				<field name="showTerrainMaptype" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAPS_SHOWTERRAIN" description="GOOGLEMAPS_MAPS_TT_SHOWTERRAIN">
+				<field name="showTerrainMaptype" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAPS_SHOWTERRAIN" description="GOOGLEMAPS_MAPS_TT_SHOWTERRAIN" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
-				<field name="showscale" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_SCALE" description="GOOGLEMAPS_TT_MAPS_SCALE">
+				<field name="showscale" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_SCALE" description="GOOGLEMAPS_TT_MAPS_SCALE" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
-				<field name="overview" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_OVERVIEW" description="GOOGLEMAPS_TT_MAPS_OVERVIEW">
+				<field name="overview" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_OVERVIEW" description="GOOGLEMAPS_TT_MAPS_OVERVIEW" class="btn-group">
 					<option value="0">GOOGLEMAPS_MAPS_OVERVIEWDISABLED</option>
 					<option value="1">GOOGLEMAPS_MAPS_OVERVIEWENABLED</option>
 					<option value="2">GOOGLEMAPS_MAPS_OVERVIEWENABLEDCLOSED</option>
 				</field>
-				<field name="dragging" type="radio" size="1" default="1" export='1' label="GOOGLEMAPS_MAPS_DRAGGING" description="GOOGLEMAPS_TT_MAPS_DRAGGING">
+				<field name="dragging" type="radio" size="1" default="1" export='1' label="GOOGLEMAPS_MAPS_DRAGGING" description="GOOGLEMAPS_TT_MAPS_DRAGGING" class="btn-group btn-group-yesno">
 					<option value="0">No</option>
 					<option value="1">Yes</option>
 				</field>
-				<field name="marker" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAPS_INFOWINDOW" description="GOOGLEMAPS_MAPS_TT_INFOWINDOW">
+				<field name="marker" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAPS_INFOWINDOW" description="GOOGLEMAPS_MAPS_TT_INFOWINDOW" class="btn-group">
 				<option value="1">GOOGLEMAPS_MAPS_INFOWINDOWOPEN</option>
 				<option value="0">GOOGLEMAPS_MAPS_INFOWINDOWCLOSED</option>
 				</field>
@@ -476,19 +476,19 @@
 				<field name="iconimagemap" type="textarea" rows="5" cols="40" default="" export='1' label="GOOGLEMAPS_ICONS_IMAGEMAP" description="GOOGLEMAPS_TT_ICONS_IMAGEMAP" />
 			</fieldset>
 			<fieldset name="GOOGLEMAP_LAYERS">
-				<field name="traffic" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_TRAFFIC" description="GOOGLEMAPS_TT_MAPS_TRAFIC">
+				<field name="traffic" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_TRAFFIC" description="GOOGLEMAPS_TT_MAPS_TRAFIC" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
-				<field name="transit" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_TRANSIT" description="GOOGLEMAPS_TT_MAPS_TRANSIT">
+				<field name="transit" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_TRANSIT" description="GOOGLEMAPS_TT_MAPS_TRANSIT" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
-				<field name="bicycle" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_BICYCLE" description="GOOGLEMAPS_TT_MAPS_BICYCLE">
+				<field name="bicycle" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_BICYCLE" description="GOOGLEMAPS_TT_MAPS_BICYCLE" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
-				<field name="panoramio" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_PANORAMIO" description="GOOGLEMAPS_TT_MAPS_PANORAMIO">
+				<field name="panoramio" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_PANORAMIO" description="GOOGLEMAPS_TT_MAPS_PANORAMIO" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
@@ -544,30 +544,30 @@
 				</field>
 				<field name="pano_userid" type="text" size="8" default="" export='1' label="GOOGLEMAPS_MAPS_PANOUSERID" description="GOOGLEMAPS_TT_MAPS_PANOUSERID" />
 				<field name="pano_tag" type="text" size="40" default="" export='1' label="GOOGLEMAPS_MAPS_PANOTAG" description="GOOGLEMAPS_TT_MAPS_PANOTAG" />
-				<field name="weather" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_WEATHER" description="GOOGLEMAPS_TT_MAPS_WEATHER">
+				<field name="weather" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_WEATHER" description="GOOGLEMAPS_TT_MAPS_WEATHER" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
-				<field name="weathercloud" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_WEATHERCLOUD" description="GOOGLEMAPS_TT_MAPS_WEATHERCLOUD">
+				<field name="weathercloud" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_WEATHERCLOUD" description="GOOGLEMAPS_TT_MAPS_WEATHERCLOUD" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
-				<field name="weatherinfo" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAPS_WEATHERINFO" description="GOOGLEMAPS_TT_MAPS_WEATHERINFO">
+				<field name="weatherinfo" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAPS_WEATHERINFO" description="GOOGLEMAPS_TT_MAPS_WEATHERINFO" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
-				<field name="weathertempunit" type="radio" size= "1" default="celsius" export='1' label="GOOGLEMAPS_MAPS_WEATHERTEMPUNIT" description="GOOGLEMAPS_TT_MAPS_WEATHERTEMPUNIT">
+				<field name="weathertempunit" type="radio" size= "1" default="celsius" export='1' label="GOOGLEMAPS_MAPS_WEATHERTEMPUNIT" description="GOOGLEMAPS_TT_MAPS_WEATHERTEMPUNIT" class="btn-group">
 					<option value="celsius">GOOGLEMAPS_MAPS_WEATHERCELSIUS</option>
 					<option value="fahrenheit">GOOGLEMAPS_MAPS_WEATHERFAHRENHEIT</option>
 				</field>
-				<field name="weatherwindunit" type="radio" size= "1" default="km" export='1' label="GOOGLEMAPS_MAPS_WEATHERWINDUNIT" description="GOOGLEMAPS_TT_MAPS_WEATHERWINDUNIT">
+				<field name="weatherwindunit" type="radio" size= "1" default="km" export='1' label="GOOGLEMAPS_MAPS_WEATHERWINDUNIT" description="GOOGLEMAPS_TT_MAPS_WEATHERWINDUNIT" class="btn-group">
 					<option value="km">GOOGLEMAPS_MAPS_WEATHERKM</option>
 					<option value="m">GOOGLEMAPS_MAPS_WEATHERM</option>
 					<option value="miles">GOOGLEMAPS_MAPS_WEATHERMILES</option>
 				</field>
 			</fieldset>
 			<fieldset name="GOOGLEMAP_DIRECTIONS">
-				<field name="dir" type="list" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_DIR" description="GOOGLEMAPS_TT_MAPS_DIR">
+				<field name="dir" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_DIR" description="GOOGLEMAPS_TT_MAPS_DIR" class="btn-group btn-group-vertical">
 					<option value="0">GOOGLEMAPS_MAPS_DIRNONE</option>
 					<option value="1">GOOGLEMAPS_MAPS_DIREXTERNALGOOGLE</option>
 					<option value="2">GOOGLEMAPS_MAPS_DIREXTERNALDIR</option>
@@ -575,65 +575,65 @@
 					<option value="4">GOOGLEMAPS_MAPS_DIRLIGHTBOXGOOGLE</option>
 					<option value="5">GOOGLEMAPS_MAPS_DIRONMAP</option>
 				</field>
-				<field name="dirtype" type="radio" size= "1" default="D" export='1' label="GOOGLEMAPS_MAPS_DIRTYPE" description="GOOGLEMAPS_TT_MAPS_DIRTYPE">
+				<field name="dirtype" type="radio" size= "1" default="D" export='1' label="GOOGLEMAPS_MAPS_DIRTYPE" description="GOOGLEMAPS_TT_MAPS_DIRTYPE" class="btn-group">
 					<option value="D">GOOGLEMAPS_MAPS_DIRTYPEDRIVING</option>
 					<option value="W">GOOGLEMAPS_MAPS_DIRTYPEWALKING</option>
 					<option value="B">GOOGLEMAPS_MAPS_DIRTYPEBICYCLE</option>
 					<option value="R">GOOGLEMAPS_MAPS_DIRTYPETRANSIT</option>
 				</field>
-				<field name="formdirtype" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAPS_DIRSHOWTYPE" description="GOOGLEMAPS_TT_MAPS_DIRSHOWTYPE">
+				<field name="formdirtype" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAPS_DIRSHOWTYPE" description="GOOGLEMAPS_TT_MAPS_DIRSHOWTYPE" class="btn-group btn-group-yesno">
 					<option value="0">No</option>
 					<option value="1">Yes</option>
 				</field>		
-				<field name="avoidhighways" type="radio" size="1" default="0" export='1' label="GOOGLEMAPS_MAPS_AVOIDHIGHWAYS" description="GOOGLEMAPS_TT_MAPS_AVOIDHIGHWAYS">
+				<field name="avoidhighways" type="radio" size="1" default="0" export='1' label="GOOGLEMAPS_MAPS_AVOIDHIGHWAYS" description="GOOGLEMAPS_TT_MAPS_AVOIDHIGHWAYS" class="btn-group btn-group-yesno">
 					<option value="0">No</option>
 					<option value="1">Yes</option>
 				</field>
-				<field name="avoidtoll" type="radio" size="1" default="0" export='1' label="GOOGLEMAPS_MAPS_AVOIDTOLL" description="GOOGLEMAPS_TT_MAPS_AVOIDTOLL">
+				<field name="avoidtoll" type="radio" size="1" default="0" export='1' label="GOOGLEMAPS_MAPS_AVOIDTOLL" description="GOOGLEMAPS_TT_MAPS_AVOIDTOLL" class="btn-group btn-group-yesno">
 					<option value="0">No</option>
 					<option value="1">Yes</option>
 				</field>
-				<field name="diroptimize" type="radio" size="1" default="0" export='1' label="GOOGLEMAPS_MAPS_DIROPTIMIZE" description="GOOGLEMAPS_TT_MAPS_DIROPTIMIZE">
+				<field name="diroptimize" type="radio" size="1" default="0" export='1' label="GOOGLEMAPS_MAPS_DIROPTIMIZE" description="GOOGLEMAPS_TT_MAPS_DIROPTIMIZE" class="btn-group btn-group-yesno">
 					<option value="0">No</option>
 					<option value="1">Yes</option>
 				</field>
-				<field name="diralternatives" type="radio" size="1" default="0" export='1' label="GOOGLEMAPS_MAPS_DIRALTERNATIVES" description="GOOGLEMAPS_TT_MAPS_DIRALTERNATIVES">
+				<field name="diralternatives" type="radio" size="1" default="0" export='1' label="GOOGLEMAPS_MAPS_DIRALTERNATIVES" description="GOOGLEMAPS_TT_MAPS_DIRALTERNATIVES" class="btn-group btn-group-yesno">
 					<option value="0">No</option>
 					<option value="1">Yes</option>
 				</field>
-				<field name="showdir" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAPS_SHOWDIR" description="GOOGLEMAPS_TT_MAPS_SHOWDIR">
+				<field name="showdir" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAPS_SHOWDIR" description="GOOGLEMAPS_TT_MAPS_SHOWDIR" class="btn-group btn-group-yesno">
 				<option value="0">No</option>
 				<option value="1">Yes</option>
 				</field>
-				<field name="animdir" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_ANIMDIR" description="GOOGLEMAPS_TT_MAPS_ANIMDIR">
+				<field name="animdir" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_ANIMDIR" description="GOOGLEMAPS_TT_MAPS_ANIMDIR" class="btn-group">
 				  <option value="0">No</option>
 				  <option value="1">GOOGLEMAPS_MAPS_ANIMDIRTOP</option>
 				  <option value="2">GOOGLEMAPS_MAPS_ANIMDIRBOTTOM</option>
 				</field>
 				<field name="animspeed" type="text" size="3" default="1" export='1' label="GOOGLEMAPS_MAPS_ANIMSPEED" description="GOOGLEMAPS_TT_MAPS_ANIMSPEED" />
-				<field name="animautostart" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_ANIMAUTOSTART" description="GOOGLEMAPS_TT_MAPS_ANIMAUTOSTART">
+				<field name="animautostart" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_ANIMAUTOSTART" description="GOOGLEMAPS_TT_MAPS_ANIMAUTOSTART" class="btn-group btn-group-yesno">
 					<option value="0">No</option>
 					<option value="1">Yes</option>
 				</field>
-				<field name="animunit" type="radio" size="1" default="kilometers" export='1' label="GOOGLEMAPS_MAPS_ANIMUNIT" description="GOOGLEMAPS_TT_MAPS_ANIMUNIT">
+				<field name="animunit" type="radio" size="1" default="kilometers" export='1' label="GOOGLEMAPS_MAPS_ANIMUNIT" description="GOOGLEMAPS_TT_MAPS_ANIMUNIT" class="btn-group">
 					<option value="kilometers">GOOGLEMAPS_TT_MAPS_ANIMUNITKILOMETERS</option>
 					<option value="miles">GOOGLEMAPS_TT_MAPS_ANIMUNITMILES</option>
 				</field>
-				<field name="formspeed" type="radio" size="1" default="0" export='1' label="GOOGLEMAPS_MAPS_FORMSPEED" description="GOOGLEMAPS_TT_MAPS_FORMSPEED">
+				<field name="formspeed" type="radio" size="1" default="0" export='1' label="GOOGLEMAPS_MAPS_FORMSPEED" description="GOOGLEMAPS_TT_MAPS_FORMSPEED" class="btn-group btn-group-yesno">
 					<option value="0">No</option>
 					<option value="1">Yes</option>
 				</field>
-				<field name="formaddress" type="radio" size="1" default="0" export='1' label="GOOGLEMAPS_MAPS_FORMADDRESS" description="GOOGLEMAPS_TT_MAPS_FORMADDRESS">
+				<field name="formaddress" type="radio" size="1" default="0" export='1' label="GOOGLEMAPS_MAPS_FORMADDRESS" description="GOOGLEMAPS_TT_MAPS_FORMADDRESS" class="btn-group">
 					<option value="0">No</option>
 					<option value="1">GOOGLEMAPS_MAPS_FORMADDRTOP</option>
 					<option value="2">GOOGLEMAPS_MAPS_FORMADDRBOTTOM</option>
 				</field>
-				<field name="formdir" type="radio" size="1" default="0" export='1' label="GOOGLEMAPS_MAPS_FORMDIR" description="GOOGLEMAPS_TT_MAPS_FORMDIR">
+				<field name="formdir" type="radio" size="1" default="0" export='1' label="GOOGLEMAPS_MAPS_FORMDIR" description="GOOGLEMAPS_TT_MAPS_FORMDIR" class="btn-group">
 					<option value="0">GOOGLEMAPS_MAPS_FORMDIRNO</option>
 					<option value="1">GOOGLEMAPS_MAPS_FORMDIRFROM</option>
 					<option value="2">GOOGLEMAPS_MAPS_FORMDIRTO</option>
 				</field>
-				<field name="autocompl" type="radio" size= "1" default="both" export='1' label="GOOGLEMAPS_MAPS_AUTOCOMPL" description="GOOGLEMAPS_TT_MAPS_AUTOCOMPL">
+				<field name="autocompl" type="radio" size= "1" default="both" export='1' label="GOOGLEMAPS_MAPS_AUTOCOMPL" description="GOOGLEMAPS_TT_MAPS_AUTOCOMPL" class="btn-group">
 					<option value="none">GOOGLEMAPS_MAPS_AUTOCOMPL_NONE</option>
 					<option value="establishment">GOOGLEMAPS_MAPS_AUTOCOMPL_ESTABL</option>
 					<option value="geocode">GOOGLEMAPS_MAPS_AUTOCOMPL_GEOCODE</option>
@@ -654,11 +654,11 @@
 				<field name="txt_optimize" type="textarea" rows="3" cols="40" default="" value="Optimize route" export='1' label="GOOGLEMAPS_MAPS_TXTOPTIMIZE" description="GOOGLEMAPS_TT_MAPS_TXTOPTIMIZE" />
 				<field name="txt_alternatives" type="textarea" rows="3" cols="40" default="" value="Route alternatives" export='1' label="GOOGLEMAPS_MAPS_TXTALTERNATIVES" description="GOOGLEMAPS_TT_MAPS_TXTALTERNATIVES" />
 				<field name="inputsize" type="text" size= "3" default="25" export='1' label="GOOGLEMAPS_INPUTSIZE" description="GOOGLEMAPS_TT_INPUTSIZE" />
-				<field name="dirdefault" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_FROMTODEFAULT" description="GOOGLEMAPS_TT_MAPS_FROMTODEFAULT">
+				<field name="dirdefault" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_FROMTODEFAULT" description="GOOGLEMAPS_TT_MAPS_FROMTODEFAULT" class="btn-group">
 				<option value="0">GOOGLEMAPS_MAPS_FROMTODEFAULTTO</option>
 				<option value="1">GOOGLEMAPS_MAPS_FROMTODEFAULTFROM</option>
 				</field>
-				<field name="gotoaddr" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_GOTOADDR" description="GOOGLEMAPS_TT_MAPS_GOTOADDR">
+				<field name="gotoaddr" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_GOTOADDR" description="GOOGLEMAPS_TT_MAPS_GOTOADDR" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
@@ -690,13 +690,13 @@
 				<field name="txtaddr" type="textarea" filter="raw" rows="3" cols="40" default="Address: ##" export='1' label="GOOGLEMAPS_MAPS_TXTADDRESSINFOWINDOW" description="GOOGLEMAPS_TT_MAPS_TXTADDRESSINFOWINDOW" />
 				<field name="erraddr" type="textarea" filter="raw" rows="3" cols="40" default="Address ## not found!" export='1' label="GOOGLEMAPS_MAPS_ADDRERRTXT" description="GOOGLEMAPS_TT_MAPS_ADDRERRTXT" />
 				<field name="txtgotoaddr" type="textarea" rows="3" cols="40" default="Goto" export='1' label="GOOGLEMAPS_MAPS_TXTGOTOADDR" description="GOOGLEMAPS_TT_MAPS_TXTGOTOADDR" />
-				<field name="clientgeotype" type="radio" size= "1" default="google" export='1' label="GOOGLEMAPS_MAPS_GEOTYPE" description="GOOGLEMAPS_TT_MAPS_GEOTYPE">
+				<field name="clientgeotype" type="radio" size= "1" default="google" export='1' label="GOOGLEMAPS_MAPS_GEOTYPE" description="GOOGLEMAPS_TT_MAPS_GEOTYPE" class="btn-group">
 					<option value="google">GOOGLEMAPS_MAPS_GEOTYPE_GOOGLE</option>
 					<option value="local">GOOGLEMAPS_MAPS_GEOTYPE_LOCAL</option>
 				</field>
 			</fieldset>
 			<fieldset name="GOOGLEMAP_LIGHTBOX">
-				<field name="lightbox" type="radio" size="1" default="0" export='1' label="GOOGLEMAPS_MAPS_LIGHTBOX" description="GOOGLEMAPS_TT_MAPS_LIGHTBOX">
+				<field name="lightbox" type="radio" size="1" default="0" export='1' label="GOOGLEMAPS_MAPS_LIGHTBOX" description="GOOGLEMAPS_TT_MAPS_LIGHTBOX" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
@@ -740,55 +740,55 @@
 				<field name="svyaw" type="text" size= "10" default="0" export='1' label="GOOGLEMAPS_MAPS_SVYAW" description="GOOGLEMAPS_TT_MAPS_SVYAW" />
 				<field name="svpitch" type="text" size= "10" default="0" export='1' label="GOOGLEMAPS_MAPS_SVPITCH" description="GOOGLEMAPS_TT_MAPS_SVPITCH" />
 				<field name="svzoom" type="text" size= "10" default="" export='1' label="GOOGLEMAPS_MAPS_SVZOOM" description="GOOGLEMAPS_TT_MAPS_SVZOOM" />
-				<field name="svautorotate" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_SVAUTOROTATE" description="GOOGLEMAPS_TT_MAPS_SVAUTOROTATE">
+				<field name="svautorotate" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_SVAUTOROTATE" description="GOOGLEMAPS_TT_MAPS_SVAUTOROTATE" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
-				<field name="svaddress" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAPS_SVADDRESS" description="GOOGLEMAPS_TT_MAPS_SVADDRESS">
+				<field name="svaddress" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAPS_SVADDRESS" description="GOOGLEMAPS_TT_MAPS_SVADDRESS" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
 			</fieldset>
 			<fieldset name="GOOGLEMAP_KML" addfieldpath="/plugins/system/plugin_googlemap3/models/fields">
-				<field name="kmlrenderer" type="list" size= "3" default="google" export='1' label="GOOGLEMAPS_MAPS_KMLRENDERER" description="GOOGLEMAPS_TT_MAPS_KMLRENDERER">
+				<field name="kmlrenderer" type="radio" size= "3" default="google" export='1' label="GOOGLEMAPS_MAPS_KMLRENDERER" description="GOOGLEMAPS_TT_MAPS_KMLRENDERER" class="btn-group">
 					<option value="google">GOOGLEMAPS_MAPS_KMLRENDERERGOOGLE</option>
 					<option value="geoxml">GOOGLEMAPS_MAPS_KMLRENDERERGEOXML</option>
 					<option value="arcgis">GOOGLEMAPS_MAPS_KMLRENDERERARCGIS</option>
 				</field>
 				<field name="kmlsidebar" type="text" size="40" default="none" export='1' label="GOOGLEMAPS_MAPS_KMLSIDEBAR" description="GOOGLEMAPS_TT_MAPS_KMLSIDEBAR" />
 				<field name="kmlsbwidth" type="text" size= "10" default="200" export='1' label="GOOGLEMAPS_MAPS_KMLSIDEBARWIDTH" description="GOOGLEMAPS_TT_MAPS_KMLSIDEBARWIDTH" />
-				<field name="kmlfoldersopen" type="radio" size="1" default="0" export='1' label="GOOGLEMAPS_MAPS_KMLFOLDERSOPEN" description="GOOGLEMAPS_TT_MAPS_KMLFOLDERSOPEN">
+				<field name="kmlfoldersopen" type="radio" size="1" default="0" export='1' label="GOOGLEMAPS_MAPS_KMLFOLDERSOPEN" description="GOOGLEMAPS_TT_MAPS_KMLFOLDERSOPEN" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
-				<field name="kmlhide" type="radio" size="1" default="0" export='1' label="GOOGLEMAPS_MAPS_KMLHIDE" description="GOOGLEMAPS_TT_MAPS_KMLHIDE">
+				<field name="kmlhide" type="radio" size="1" default="0" export='1' label="GOOGLEMAPS_MAPS_KMLHIDE" description="GOOGLEMAPS_TT_MAPS_KMLHIDE" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
-				<field name="kmlscale" type="radio" size="1" default="0" export='1' label="GOOGLEMAPS_MAPS_KMLSCALE" description="GOOGLEMAPS_TT_MAPS_KMLSCALE">
+				<field name="kmlscale" type="radio" size="1" default="0" export='1' label="GOOGLEMAPS_MAPS_KMLSCALE" description="GOOGLEMAPS_TT_MAPS_KMLSCALE" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
-				<field name="kmlopenmethod" type="radio" size="1" default="click" export='1' label="GOOGLEMAPS_MAPS_KMLINFOEVENT" description="GOOGLEMAPS_TT_MAPS_KMLINFOEVENT">
+				<field name="kmlopenmethod" type="radio" size="1" default="click" export='1' label="GOOGLEMAPS_MAPS_KMLINFOEVENT" description="GOOGLEMAPS_TT_MAPS_KMLINFOEVENT" class="btn-group">
 					<option value="click">GOOGLEMAPS_MAPS_KMLINFOEVENTCLICK</option>
 					<option value="dblclick">GOOGLEMAPS_MAPS_KMLINFOEVENTDOUBLECLICK</option>
 					<option value="mouseover">GOOGLEMAPS_MAPS_KMLINFOEVENTMOUSEOVER</option>
 					<option value="mousedown">GOOGLEMAPS_MAPS_KMLINFOEVENTMOUSEDOWN</option>
 				</field>
-				<field name="kmlsbsort" type="radio" size= "1" default="none" export='1' label="GOOGLEMAPS_MAPS_KMLSORTSIDEBAR" description="GOOGLEMAPS_TT_MAPS_KMLSORTSIDEBAR">
+				<field name="kmlsbsort" type="radio" size= "1" default="none" export='1' label="GOOGLEMAPS_MAPS_KMLSORTSIDEBAR" description="GOOGLEMAPS_TT_MAPS_KMLSORTSIDEBAR" class="btn-group">
 					<option value="none">GOOGLEMAPS_MAPS_KMLSORTSIDEBARNONE</option>
 					<option value="asc">GOOGLEMAPS_MAPS_KMLSORTSIDEBARASC</option>
 					<option value="desc">GOOGLEMAPS_MAPS_KMLSORTSIDEBARDESC</option>
 				</field>
-				<field name="kmllightbox" type="radio" size="1" default="0" export='1' label="GOOGLEMAPS_MAPS_KMLLIGHTBOX" description="GOOGLEMAPS_TT_MAPS_KMLLIGHTBOX">
+				<field name="kmllightbox" type="radio" size="1" default="0" export='1' label="GOOGLEMAPS_MAPS_KMLLIGHTBOX" description="GOOGLEMAPS_TT_MAPS_KMLLIGHTBOX" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
-				<field name="kmlmessshow" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_KMLSHOWMESS" description="GOOGLEMAPS_TT_MAPS_KMLSHOWMESS">
+				<field name="kmlmessshow" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_KMLSHOWMESS" description="GOOGLEMAPS_TT_MAPS_KMLSHOWMESS" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
-				<field name="kmlclickablemarkers" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAPS_SHOWKMLINFO" description="GOOGLEMAPS_TT_MAPS_SHOWKMLINFO">
+				<field name="kmlclickablemarkers" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAPS_SHOWKMLINFO" description="GOOGLEMAPS_TT_MAPS_SHOWKMLINFO" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
@@ -817,19 +817,19 @@
 					<option value="0">0</option>
 				</field>
 				<field name="kmlopendivmarkers" type="text" size= "30" default="" export='1' label="GOOGLEMAPS_MAPS_SHOWINFOINDIV" description="GOOGLEMAPS_TT_MAPS_SHOWINFOINDIV" />
-				<field name="kmlcontentlinkmarkers" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_KMLSHOWEXTCONTENT" description="GOOGLEMAPS_TT_MAPS_KMLSHOWEXTCONTENT">
+				<field name="kmlcontentlinkmarkers" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_KMLSHOWEXTCONTENT" description="GOOGLEMAPS_TT_MAPS_KMLSHOWEXTCONTENT" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
-				<field name="kmllinkablemarkers" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_KMLMARKERLINK" description="GOOGLEMAPS_TT_MAPS_KMLMARKERLINK">
+				<field name="kmllinkablemarkers" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_KMLMARKERLINK" description="GOOGLEMAPS_TT_MAPS_KMLMARKERLINK" class="btn-group btn-group-yesno">
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
-				<field name="kmllinktarget" type="radio" size= "1" default="_self" export='1' label="GOOGLEMAPS_MAPS_KMLLINKTARGET" description="GOOGLEMAPS_TT_MAPS_KMLLINKTARGET">
+				<field name="kmllinktarget" type="radio" size= "1" default="_self" export='1' label="GOOGLEMAPS_MAPS_KMLLINKTARGET" description="GOOGLEMAPS_TT_MAPS_KMLLINKTARGET" class="btn-group">
 					<option value="_self">GOOGLEMAPS_MAPS_KMLLINKTARGETOWNWINTAB</option>
 					<option value="_blank">GOOGLEMAPS_MAPS_KMLLINKTARGETNEWWINTAB</option>
 				</field>
-				<field name="kmllinkmethod" type="radio" size="1" default="dblclick" export='1' label="GOOGLEMAPS_MAPS_KMLMARKERLINKMETHOD" description="GOOGLEMAPS_TT_MAPS_KMLMARKERLINKMETHOD">
+				<field name="kmllinkmethod" type="radio" size="1" default="dblclick" export='1' label="GOOGLEMAPS_MAPS_KMLMARKERLINKMETHOD" description="GOOGLEMAPS_TT_MAPS_KMLMARKERLINKMETHOD" class="btn-group">
 					<option value="click">GOOGLEMAPS_MAPS_KMLMARKERLINKMETHODCLICK</option>
 					<option value="dblclick">GOOGLEMAPS_MAPS_KMLMARKERLINKMETHODDOUBLECLICK</option>
 					<option value="mouseover">GOOGLEMAPS_MAPS_KMLMARKERLINKMETHODMOUSEOVER</option>
@@ -840,7 +840,7 @@
 				<field name="kmlmarkerlabelclass" type="text" size= "40" default="" export='1' label="GOOGLEMAPS_MAPS_LABELCLASSMARKER" description="GOOGLEMAPS_TT_MAPS_LABELCLASSMARKER" />
 				<field name="kmlpolylabel" type="text" size= "3" default="100" export='1' label="GOOGLEMAPS_MAPS_LABELOPACITYPOLYGON" description="GOOGLEMAPS_TT_MAPS_LABELOPACITYPOLYGON" />
 				<field name="kmlpolylabelclass" type="text" size= "40" default="" export='1' label="GOOGLEMAPS_MAPS_LABELCLASSPOLYGON" description="GOOGLEMAPS_TT_MAPS_LABELCLASSPOLYGON" />
-				<field name="proxy" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_KMLPROXY" description="GOOGLEMAPS_TT_MAPS_KMLPROXY">
+				<field name="proxy" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_KMLPROXY" description="GOOGLEMAPS_TT_MAPS_KMLPROXY" class="btn-group btn-group-yesno">
 				<option value="1">Yes</option>
 				<option value="0">No</option>
 				</field>
@@ -856,13 +856,13 @@
 				<field name="gridsize" type="text" size= "3" default="" export='1' label="GOOGLEMAPS_MAPS_CLUSTERGRIDSIZE" description="GOOGLEMAPS_TT_MAPS_CLUSTERGRIDSIZE" />
 				<field name="minmarkerscluster" type="text" size= "2" default="" export='1' label="GOOGLEMAPS_MAPS_CLUSTERMINMARKERS" description="GOOGLEMAPS_TT_MAPS_CLUSTERMINMARKERS" />
 				<field name="maxlinesinfocluster" type="text" size= "4" default="" export='1' label="GOOGLEMAPS_MAPS_CLUSTERINFOMAXLINES" description="GOOGLEMAPS_TT_MAPS_CLUSTERINFOMAXLINES" />
-				<field name="clusterinfowindow" type="radio" size="1" default="click" export='1' label="GOOGLEMAPS_MAPS_CLUSTERINFOMETHOD" description="GOOGLEMAPS_TT_MAPS_CLUSTERINFOMETHOD">
+				<field name="clusterinfowindow" type="radio" size="1" default="click" export='1' label="GOOGLEMAPS_MAPS_CLUSTERINFOMETHOD" description="GOOGLEMAPS_TT_MAPS_CLUSTERINFOMETHOD" class="btn-group">
 					<option value="click">GOOGLEMAPS_MAPS_CLUSTERINFOMETHODCLICK</option>
 					<option value="dblclick">GOOGLEMAPS_MAPS_CLUSTERINFOMETHODDOUBLECLICK</option>
 					<option value="mouseover">GOOGLEMAPS_MAPS_CLUSTERINFOMETHODMOUSEOVER</option>
 					<option value="mousedown">GOOGLEMAPS_MAPS_CLUSTERINFOMETHODMOUSEDOWN</option>
 				</field>
-				<field name="clusterzoom" type="radio" size="1" default="dblclick" export='1' label="GOOGLEMAPS_MAPS_CLUSTERZOOMINTO" description="GOOGLEMAPS_TT_MAPS_CLUSTERZOOMINTO">
+				<field name="clusterzoom" type="radio" size="1" default="dblclick" export='1' label="GOOGLEMAPS_MAPS_CLUSTERZOOMINTO" description="GOOGLEMAPS_TT_MAPS_CLUSTERZOOMINTO" class="btn-group">
 					<option value="click">GOOGLEMAPS_MAPS_CLUSTERZOOMINTOCLICK</option>
 					<option value="dblclick">GOOGLEMAPS_MAPS_CLUSTERZOOMINTODOUBLECLICK</option>
 					<option value="mouseover">GOOGLEMAPS_MAPS_CLUSTERZOOMINTOMOUSEOVER</option>
