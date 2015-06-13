@@ -711,7 +711,8 @@ class plgSystemPlugin_googlemap3_helper
 				
 			// Get the rendered body text
 			$text = JResponse::getBody();
-			
+
+			// Keep for a while the solution to load google maps after mootools script for Joomla 2.5 because for conflicting old mootools			
 			if (substr($this->jversion,0,3)=="2.5") {
 				// Check if mootools is loaded
 				// load after mootools script.

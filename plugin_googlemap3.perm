@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="2.5" type="plugin" group="system" method="upgrade">
+<extension version="3.0" type="plugin" group="system" method="upgrade">
 	<name>System - Google Maps</name>
 	<author>Mike Reumer</author>
 	<creationDate>July 2014</creationDate>

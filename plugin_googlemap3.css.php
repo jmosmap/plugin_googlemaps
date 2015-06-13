@@ -1,6 +1,7 @@
 <?php
 /*------------------------------------------------------------------------
 # plugin_googlemaps.css.php - Google Maps plugin
+# To solve known css problems that break the design of a map 
 # ------------------------------------------------------------------------
 # author    Mike Reumer
 # copyright Copyright (C) 2012 tech.reumer.net. All Rights Reserved.
@@ -10,9 +11,9 @@
 # Documentation: http://tech.reumer.net/Google-Maps/Documentation-of-plugin-Googlemap/
 --------------------------------------------------------------------------*/
 
-/* Googlemaps CSS
-To solve known css problems that break the design of a map 
-*/
+// No protection of Joomla because this php program may be called directly to deliver content
+// It uses Joomla framework
+// defined( '_JEXEC' ) or die( 'Restricted access' );
 
 @define('_JEXEC', 1);
 
@@ -36,7 +37,7 @@ if (!defined('JPATH_BASE'))
 {
 	$path = dirname(__FILE__);
 
-	// Joomla 1.6.x/1.7.x/2.5.x
+	// Define the path based on the file and remove the path to the plugin
 	$path = str_replace('/plugins/system/plugin_googlemap3', '', $path);
 	$path = str_replace('\plugins\system\plugin_googlemap3', '', $path);
 	

@@ -11,9 +11,6 @@
 --------------------------------------------------------------------------*/
 
 // No protection of Joomla because this php program may be called directly to deliver content
-// defined( '_JEXEC' ) or die( 'Restricted access' );
-
-// No protection of Joomla because this php program may be called directly to deliver content
 // It uses Joomla framework
 // defined( '_JEXEC' ) or die( 'Restricted access' );
 
@@ -35,7 +32,8 @@ if (!defined('DS'))
 if (!defined('JPATH_BASE'))
 {
 	$path = dirname(__FILE__);
-	// Joomla 1.6.x/1.7.x/2.5.x
+
+	// Define the path based on the file and remove the path to the plugin
 	$path = str_replace('/plugins/system/plugin_googlemap3', '', $path);
 	$path = str_replace('\plugins\system\plugin_googlemap3', '', $path);
 	
