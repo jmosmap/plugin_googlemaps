@@ -92,7 +92,7 @@ class plgSystemPlugin_googlemap3 extends JPlugin
 		$this->event = 'onContentPrepare';
 		
 		$app = JFactory::getApplication();
-		if($app->isAdmin()) {
+		if(!$app->isSite()) {
 			return;
 		}
 		
@@ -144,7 +144,7 @@ class plgSystemPlugin_googlemap3 extends JPlugin
 		$this->event = 'onAfterDispatch';
 		
 		$app = JFactory::getApplication();
-		if($app->isAdmin()) {
+		if(!$app->isSite()) {
 			return;
 		}
 		
@@ -196,7 +196,7 @@ class plgSystemPlugin_googlemap3 extends JPlugin
 		$this->event = 'onAfterRender';
 		
 		$app = JFactory::getApplication();
-		if($app->isAdmin()) {
+		if(!$app->isSite()) {
 			return;
 		}
 		
