@@ -432,7 +432,7 @@ class plgSystemPlugin_googlemap3_helper
 		$this->_debug_log("Memory Usage End: " . $endmem . " KB (".$diffmem." KB)");
 
 		// Add code to text
-		$code = "\n<!-- Plugin Google Maps version 3.3 by Mike Reumer ".(($this->debug_text!='')?$this->debug_text."\n":"")."-->".$code;
+		$code = "\n<!-- Plugin Google Maps version 3.4 by Mike Reumer ".(($this->debug_text!='')?$this->debug_text."\n":"")."-->".$code;
 
 		// Clean up debug text for next _process
 		$this->debug_text = '';
@@ -1027,11 +1027,11 @@ class plgSystemPlugin_googlemap3_helper
 			$code .= JHtml::_('link', "#", $text, $attribs);
 		}
 
-		$code.="<div id='mapplaceholder".$this->_mp->mapnm."'>";
+		$code.="<div id='mapplaceholder".$this->_mp->mapnm." style=\"height:100%;\"'>";
 		if ($this->_mp->align!='none')
-			$code.="<div id='mapbody".$this->_mp->mapnm."' style=\"display: none; text-align:".$this->_mp->align."\">";
+			$code.="<div id='mapbody".$this->_mp->mapnm."' style=\"display: none; height:100%; text-align:".$this->_mp->align."\">";
 		else
-			$code.="<div id='mapbody".$this->_mp->mapnm."' style=\"display: none;\">";
+			$code.="<div id='mapbody".$this->_mp->mapnm."' style=\"display: none; height:100%;\">";
 			
 		if ($this->_mp->lightbox=='1') {
 			$lboptions = array();

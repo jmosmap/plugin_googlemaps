@@ -7,7 +7,7 @@
 	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
 	<authorEmail>tech@reumer.net</authorEmail>
 	<authorUrl>tech.reumer.net</authorUrl>
-	<version>3.3</version>
+	<version>3.4</version>
 	<description>PLUGIN_GOOGLE_MAP3_INSTALLATION</description>
 	<files>
 		<filename plugin="plugin_googlemap3">plugin_googlemap3.php</filename>

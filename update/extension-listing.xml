@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jedupdate version="1">
+	<core_body>
+Plugin for displaying one or more Google Maps within content-items, modules or components of Joomla 2.5.x and 3.x.
+
+A new release 3.3 of the Joomla plugin Google Maps is available.
+This version delivers the print button, show location of the user on the map and sign in as a google user.
+
+The new version has the following new features:
+- Added option to sign in as google user to see map in own context
+- Added geo location of the visitor
+- Added direct directions based on location of visitor.
+- Added print button with parameter and language files
+- Added possibility to select icon/images in configuration of the plugin
+
+Solves the following errors:
+- Solved infowindow of gotoAddress position and streetview location combined with visitors location
+- Placed language files in separate directories and solved bug with first install that description of plugin is not shown.
+- Return parsed xml of kml file in kml proxy
+- Added error handling if geocoding is giving an error not in XML format
+- Removed latitude ID etc. Not available anymore
+- Removed sensor, it is not required anymore for geolocation of the user
+- Removed Earth maptype because it is deprecated
+- Solution for loading google maps api after mootools framework to solve the bug in google maps api that controls are not shown (3.17/18) or on top of each other (3.19)
+- Solved bug that with one marker and no geolocation the map zooms to full detail level
+- Changed demo url and some wrong url to test website.
+- Solved warning on missing variable on print button
+- Google Earth Deprecated in December 2015
+- Always set google api version from .x to .exp
+- Always set google api version from 2 to 3
+- Added classes on the directions form for labels
+- Added support to change the google maps api url (because of some countries that block the general url like China)
+- Added fix for PHP changed external entity loading. This causes a warning when reading a local file. Switch to false to enable external entity loading.
+- Changed China url
+- Solved printing in IE, Safari and Opera and keep it in the same window
+- Language files migrated to 2.5
+- Removed 1.5 code
+- Language is now formal codes: country and language, so en-GB
+- Added gotoaddrtimeout parameter for time out of infowindow of gotoaddr. And added the option to show lat and lng.
+- Sortering kml weer gemaakt
+- Change the API script location to fixed maps.googleapis.com. This reduces cookies
+- Solved problem of top level kml files that where related to a parent instead of toplevel
+
+This version will automatically update in 2.5 and 3.x.
+If you want to upgrade from version 2.x then:
+1. Install the new version 3.3. This is a new plugin, it does not replace the version 2.x plugin!
+2. Do not open the plugin configuration! First you need to enable the new system plugin called "System - Google Map" in the list of plugins by clicking the red dot in the status column. This is the only way to copy all your parameters from the old plugin to the new one!
+3. After enabling the plugin in the correct way (point 2) you can check if the settings of the old plugin are copied correctly by opening the new plugin configuration settings.
+4. After that you can disable the old system plugin called "Google Map"
+
+Language support available for all the parameters: English, French, Italian, Spanish and Swedish.
+Please send me language files so I can add them to the plugin. Goto my website to contact me.
+
+Look at the demo site first for documentation. If you've problems please do the checklist on the site: http://tech.reumer.net/Google-Maps/Documentation-of-plugin-Googlemap/checklist-placing-plugin-in-article.html
+
+If this doesn't help or you have questions or new wishes please fill in the form on my website with an url that shows the problem and version of the plugin and Joomla.
+
+Usage:
+{mosmap width='100%'|height='400'|lat='52.052312'|lon='4.447141'| zoom='3'|text='your text'} 
+(when editing article goto html view to remove returns or < br /> when you copy this example) 
+	</core_body>
+	
+	<!-- valid links only or leave blank -->
+	<homepage_link>https://github.com/jmosmap/plugin_googlemaps</homepage_link>
+	<download_link>https://github.com/jmosmap/plugin_googlemaps/releases</download_link>
+	<demo_link>http://tech.reumer.net</demo_link>
+	<documentation_link>http://tech.reumer.net/Google-Maps/Documentation-of-plugin-Googlemap/</documentation_link>
+	<support_link>http://tech.reumer.net/Mike-Reumer.html</support_link>
+	<license_link>http://tech.reumer.net/plugins/system/plugin_googlemap3/gpl.txt</license_link>
+	
+	<version>3.3</version>
+
+	<compatibility>
+		<version>25</version>
+		<version>30</version>
+	</compatibility>
+</jedupdate>

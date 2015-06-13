@@ -6,10 +6,10 @@
 		<element>plugin_googlemap3</element>
 		<type>plugin</type>
 		<folder>system</folder>
-		<version>3.2</version>
+		<version>3.3</version>
 		<client>0</client>
 		<downloads>
-			<downloadurl type="full" format="tgz">http://joomlacode.org/gf/download/frsrelease/19377/158744/plugin_googlemap_J25_J3x.v3.2.zip</downloadurl>
+			<downloadurl type="full" format="tgz">https://github.com/jmosmap/plugin_googlemaps/releases/download/J25_J3x.v3.3/plugin_googlemaps-J25_J3x.v3.3.zip</downloadurl>
 		</downloads>
 		<maintainer>Mike Reumer</maintainer>
 		<maintainerurl></maintainerurl>
@@ -21,13 +21,13 @@
 		<element>plugin_googlemap3</element>
 		<type>plugin</type>
 		<folder>system</folder>
-		<version>3.2</version>
+		<version>3.3</version>
 		<client>0</client>
 		<downloads>
-			<downloadurl type="full" format="tgz">http://joomlacode.org/gf/download/frsrelease/19377/158744/plugin_googlemap_J25_J3x.v3.2.zip</downloadurl>
+			<downloadurl type="full" format="tgz">https://github.com/jmosmap/plugin_googlemaps/releases/download/J25_J3x.v3.3/plugin_googlemaps-J25_J3x.v3.3.zip</downloadurl>
 		</downloads>
 		<maintainer>Mike Reumer</maintainer>
 		<maintainerurl></maintainerurl>
-		<targetplatform name="joomla" version="3.[0123]" />
+		<targetplatform name="joomla" version="3.[01234]" />
 	</update>
 </updates>

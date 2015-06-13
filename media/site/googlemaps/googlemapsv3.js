@@ -1,6 +1,6 @@
 /**
 * @package Googlemaps
-* @version 3.3
+* @version 3.4
 * @copyright Copyright (C) 2013 Open Source Matters. All rights reserved.
 * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL, see LICENSE.php
 * Googlemaps is free software and parts of it may contain or be derived from the
