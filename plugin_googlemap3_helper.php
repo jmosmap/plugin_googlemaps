@@ -1442,9 +1442,6 @@ class plgSystemPlugin_googlemap3_helper
 		} else if ($this->langtype == 'config') {
 			$lang = $this->params->get( 'lang', '' );
 			$this->_debug_log("config lang: ".$lang);
-		} else if ($this->langtype == 'joomfish'&&isset($_COOKIE['jfcookie'])) {
-			$lang = $_COOKIE['jfcookie']['lang']; 
-			$this->_debug_log("Joomfish lang: ".$lang);
 		} else {
 			$lang = '';
 			$this->_debug_log("No language: ".$lang);

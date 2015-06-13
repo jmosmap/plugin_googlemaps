@@ -256,7 +256,6 @@
 				</field>
 				<field name="langtype" type="radio" size="1" default="site" export='0' label="GOOGLEMAPS_LANGUAGE_OPTION" description="GOOGLEMAPS_TT_LANGUAGE_OPTION" class="btn-group">
 					<option value="site">GOOGLEMAPS_LANGTYPE_SITE</option>
-					<option value="joomfish">GOOGLEMAPS_LANGTYPE_JOOMFISH</option>
 					<option value="user">GOOGLEMAPS_LANGTYPE_USER</option>
 					<option value="config">GOOGLEMAPS_LANGTYPE_CONFIG</option>
 				</field>
