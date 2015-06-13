@@ -57,13 +57,8 @@ class plugin_googlemap3_css {
 			$plugin = JPluginHelper::getPlugin('system', 'plugin_googlemap3');
 			
 			$jversion = JVERSION;
-			// In Joomla 1.5 get the parameters in Joomla 1.6 and higher the plugin already has them, but need to be rendered with JRegistry
-			if (substr($jversion,0,3)=="1.5")
-				$params = new JParameter($plugin->params);
-			else {
-				$params = new JRegistry();
-				$params->loadString($plugin->params);
-			}
+			$params = new JRegistry();
+			$params->loadString($plugin->params);
 			
 			// Plugin code
 			$mapcss = $params->get('mapcss', '');

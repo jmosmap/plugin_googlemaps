@@ -391,10 +391,7 @@ class plgSystemPlugin_googlemap3 extends JPlugin
 			return;
 		}
 
-		if (substr($this->jversion,0,3)=="1.5")
-			$dir = JPATH_SITE."/plugins/system/";
-		else
-			$dir = JPATH_SITE."/plugins/system/plugin_googlemap3/";
+		$dir = JPATH_SITE."/plugins/system/plugin_googlemap3/";
 
 		if (file_exists($dir.'plugin_googlemap3_proxy.php')) {
 			jimport('joomla.filesystem.file');
@@ -403,11 +400,7 @@ class plgSystemPlugin_googlemap3 extends JPlugin
 
 		if ($this->params->get( 'publ', '' )=='') {
 			$database  = JFactory::getDBO();
-			if (substr($this->jversion,0,3)=="1.5")
-				$query = "SELECT params FROM #__plugins AS b WHERE b.element='plugin_googlemap2' AND b.folder='system'";
-			else
-				$query = "SELECT params FROM #__extensions AS b WHERE b.element='plugin_googlemap2' AND b.folder='system'";
-			
+			$query = "SELECT params FROM #__extensions AS b WHERE b.element='plugin_googlemap2' AND b.folder='system'";
 			$database->setQuery($query);
 			if (!$database->query())
 				JError::raiseWarning(1, 'plgSystemPlugin_googlemap3::install_params: '.JText::_('SQL Error')." ".$database->stderr(true));
@@ -419,20 +412,15 @@ class plgSystemPlugin_googlemap3 extends JPlugin
 				$savparams = $database->getEscaped($params);
 
 			if ($params!="") {
-				if (substr($this->jversion,0,3)=="1.5")
-					$query = "UPDATE #__plugins AS a SET a.params = '{$savparams}' WHERE a.element='plugin_googlemap3' AND a.folder='system'";
-				else
-					$query = "UPDATE #__extensions AS a SET a.params = '{$savparams}' WHERE a.element='plugin_googlemap3' AND a.folder='system'";
+				$query = "UPDATE #__extensions AS a SET a.params = '{$savparams}' WHERE a.element='plugin_googlemap3' AND a.folder='system'";
 				$database->setQuery($query);
 
 				if (!$database->query())
 					JError::raiseWarning(1, 'plgSystemPlugin_googlemap3::install_params: '.JText::_('SQL Error')." ".$database->stderr(true));
-				if (substr($this->jversion,0,3)=="1.5")
-					$this->params = new JParameter( $params );
-				else {
-					$plugin = JPluginHelper::getPlugin('system', 'plugin_googlemap3');
-					$this->params = new JRegistry();
-					$this->params->loadString($plugin->params);				}
+					
+				$plugin = JPluginHelper::getPlugin('system', 'plugin_googlemap3');
+				$this->params = new JRegistry();
+				$this->params->loadString($plugin->params);
 			}
 			
 			// Clean up variables
