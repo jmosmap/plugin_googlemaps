@@ -48,9 +48,6 @@ class plgSystemPlugin_googlemap3 extends JPlugin
 		$this->config = $config;
 		// Version of Joomla
 		$this->jversion = JVERSION;
-		// Check if params are defined and set otherwise try to get them from previous version
-		$this->_upgrade_plugin();
-
 		$this->loadLanguage();
 		// Check if the params are defined and set so the initial defaults can be removed.
 		$this->_restore_permanent_defaults();
@@ -384,49 +381,6 @@ class plgSystemPlugin_googlemap3 extends JPlugin
 			}
 		}
 	}
-	
-	function _upgrade_plugin() {
-		$app = JFactory::getApplication();
-		if($app->isSite()) {
-			return;
-		}
-
-		$dir = JPATH_SITE."/plugins/system/plugin_googlemap3/";
-
-		if (file_exists($dir.'plugin_googlemap3_proxy.php')) {
-			jimport('joomla.filesystem.file');
-			JFile::delete($dir.'plugin_googlemap3_proxy.php');			
-		}
-
-		if ($this->params->get( 'publ', '' )=='') {
-			$database  = JFactory::getDBO();
-			$query = "SELECT params FROM #__extensions AS b WHERE b.element='plugin_googlemap2' AND b.folder='system'";
-			$database->setQuery($query);
-			if (!$database->query())
-				JError::raiseWarning(1, 'plgSystemPlugin_googlemap3::install_params: '.JText::_('SQL Error')." ".$database->stderr(true));
-			
-			$params = $database->loadResult();
-			if (substr($this->jversion,0,2)=="3.")
-				$savparams = $database->escape($params);
-			else
-				$savparams = $database->getEscaped($params);
-
-			if ($params!="") {
-				$query = "UPDATE #__extensions AS a SET a.params = '{$savparams}' WHERE a.element='plugin_googlemap3' AND a.folder='system'";
-				$database->setQuery($query);
-
-				if (!$database->query())
-					JError::raiseWarning(1, 'plgSystemPlugin_googlemap3::install_params: '.JText::_('SQL Error')." ".$database->stderr(true));
-					
-				$plugin = JPluginHelper::getPlugin('system', 'plugin_googlemap3');
-				$this->params = new JRegistry();
-				$this->params->loadString($plugin->params);
-			}
-			
-			// Clean up variables
-			unset($database, $query, $params, $savparams, $plugin);
-		}		
-	}	
 }
 
 ?>
