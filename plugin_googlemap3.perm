@@ -486,63 +486,6 @@
 					<option value="1">Yes</option>
 					<option value="0">No</option>
 				</field>
-				<field name="panoramio" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_PANORAMIO" description="GOOGLEMAPS_TT_MAPS_PANORAMIO" class="btn-group btn-group-yesno">
-					<option value="1">Yes</option>
-					<option value="0">No</option>
-				</field>
-				<field name="panominzoom" type="list" size= "1" default="none" export='1' label="GOOGLEMAPS_MAPS_PANOMINZOOM" description="GOOGLEMAPS_TT_MAPS_PANOMINZOOM">
-					<option value="none">GOOGLEMAPS_MAPS_PANOZOOMNONE</option>
-					<option value="21">21</option>
-					<option value="20">20</option>
-					<option value="19">19</option>
-					<option value="18">18</option>
-					<option value="17">17</option>
-					<option value="16">16</option>
-					<option value="15">15</option>
-					<option value="14">14</option>
-					<option value="13">13</option>
-					<option value="12">12</option>
-					<option value="11">11</option>
-					<option value="10">10</option>
-					<option value="9">9</option>
-					<option value="8">8</option>
-					<option value="7">7</option>
-					<option value="6">6</option>
-					<option value="5">5</option>
-					<option value="4">4</option>
-					<option value="3">3</option>
-					<option value="2">2</option>
-					<option value="1">1</option>
-					<option value="0">0</option>
-				</field>
-				<field name="panomaxzoom" type="list" size= "1" default="none" export='1' label="GOOGLEMAPS_MAPS_PANOMAXZOOM" description="GOOGLEMAPS_TT_MAPS_PANOMAXZOOM">
-					<option value="none">GOOGLEMAPS_MAPS_PANOZOOMNONE</option>
-					<option value="21">21</option>
-					<option value="20">20</option>
-					<option value="19">19</option>
-					<option value="18">18</option>
-					<option value="17">17</option>
-					<option value="16">16</option>
-					<option value="15">15</option>
-					<option value="14">14</option>
-					<option value="13">13</option>
-					<option value="12">12</option>
-					<option value="11">11</option>
-					<option value="10">10</option>
-					<option value="9">9</option>
-					<option value="8">8</option>
-					<option value="7">7</option>
-					<option value="6">6</option>
-					<option value="5">5</option>
-					<option value="4">4</option>
-					<option value="3">3</option>
-					<option value="2">2</option>
-					<option value="1">1</option>
-					<option value="0">0</option>
-				</field>
-
-				<field name="pano_userid" type="text" size="8" default="" export='1' label="GOOGLEMAPS_MAPS_PANOUSERID" description="GOOGLEMAPS_TT_MAPS_PANOUSERID" />
-				<field name="pano_tag" type="text" size="40" default="" export='1' label="GOOGLEMAPS_MAPS_PANOTAG" description="GOOGLEMAPS_TT_MAPS_PANOTAG" />
 			</fieldset>
 			<fieldset name="GOOGLEMAP_DIRECTIONS">
 				<field name="dir" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_DIR" description="GOOGLEMAPS_TT_MAPS_DIR" class="btn-group btn-group-vertical">

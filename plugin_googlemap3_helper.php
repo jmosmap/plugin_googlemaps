@@ -633,8 +633,6 @@ class plgSystemPlugin_googlemap3_helper
 		
 		if ($this->_mp->autocompl!='none'&&!in_array('places', $this->googlescript_libraries))
 			$this->googlescript_libraries[]='places';
-		if ($this->_mp->panoramio=="1"&&!in_array('panoramio', $this->googlescript_libraries))
-			$this->googlescript_libraries[]='panoramio';
 
 		// Define the language for the maps thru the script
 		$this->googlescript_lang = $this->_mp->lang;
