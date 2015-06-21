@@ -9,10 +9,11 @@
 		<version>3.3</version>
 		<client>0</client>
 		<downloads>
-			<downloadurl type="full" format="tgz">https://github.com/jmosmap/plugin_googlemaps/releases/download/J25_J3x.v3.3/plugin_googlemaps-J25_J3x.v3.3.zip</downloadurl>
+			<downloadurl type="full" format="zip">https://github.com/jmosmap/plugin_googlemaps/releases/download/J25_J3x.v3.3/plugin_googlemaps-J25_J3x.v3.3.zip</downloadurl>
+			<downloadurl type="full" format="zip">http://tech.reumer.net/update/plugin_googlemap3/plugin_googlemaps-J25_J3x.v3.3.zip</downloadurl>
 		</downloads>
 		<maintainer>Mike Reumer</maintainer>
 		<maintainerurl></maintainerurl>
-		<targetplatform name="joomla" version="3.[01234]" />
+		<targetplatform name="joomla" version="3.[012345]" />
 	</update>
 </updates>
