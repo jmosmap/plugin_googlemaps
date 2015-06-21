@@ -543,27 +543,6 @@
 				</field>
 				<field name="pano_userid" type="text" size="8" default="" export='1' label="GOOGLEMAPS_MAPS_PANOUSERID" description="GOOGLEMAPS_TT_MAPS_PANOUSERID" />
 				<field name="pano_tag" type="text" size="40" default="" export='1' label="GOOGLEMAPS_MAPS_PANOTAG" description="GOOGLEMAPS_TT_MAPS_PANOTAG" />
-				<field name="weather" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_WEATHER" description="GOOGLEMAPS_TT_MAPS_WEATHER" class="btn-group btn-group-yesno">
-					<option value="1">Yes</option>
-					<option value="0">No</option>
-				</field>
-				<field name="weathercloud" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_WEATHERCLOUD" description="GOOGLEMAPS_TT_MAPS_WEATHERCLOUD" class="btn-group btn-group-yesno">
-					<option value="1">Yes</option>
-					<option value="0">No</option>
-				</field>
-				<field name="weatherinfo" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAPS_WEATHERINFO" description="GOOGLEMAPS_TT_MAPS_WEATHERINFO" class="btn-group btn-group-yesno">
-					<option value="1">Yes</option>
-					<option value="0">No</option>
-				</field>
-				<field name="weathertempunit" type="radio" size= "1" default="celsius" export='1' label="GOOGLEMAPS_MAPS_WEATHERTEMPUNIT" description="GOOGLEMAPS_TT_MAPS_WEATHERTEMPUNIT" class="btn-group">
-					<option value="celsius">GOOGLEMAPS_MAPS_WEATHERCELSIUS</option>
-					<option value="fahrenheit">GOOGLEMAPS_MAPS_WEATHERFAHRENHEIT</option>
-				</field>
-				<field name="weatherwindunit" type="radio" size= "1" default="km" export='1' label="GOOGLEMAPS_MAPS_WEATHERWINDUNIT" description="GOOGLEMAPS_TT_MAPS_WEATHERWINDUNIT" class="btn-group">
-					<option value="km">GOOGLEMAPS_MAPS_WEATHERKM</option>
-					<option value="m">GOOGLEMAPS_MAPS_WEATHERM</option>
-					<option value="miles">GOOGLEMAPS_MAPS_WEATHERMILES</option>
-				</field>
 			</fieldset>
 			<fieldset name="GOOGLEMAP_DIRECTIONS">
 				<field name="dir" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_DIR" description="GOOGLEMAPS_TT_MAPS_DIR" class="btn-group btn-group-vertical">

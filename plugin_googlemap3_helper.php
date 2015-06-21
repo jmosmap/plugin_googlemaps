@@ -633,8 +633,6 @@ class plgSystemPlugin_googlemap3_helper
 		
 		if ($this->_mp->autocompl!='none'&&!in_array('places', $this->googlescript_libraries))
 			$this->googlescript_libraries[]='places';
-		if (($this->_mp->weather=='1'||$this->_mp->weathercloud=='1')&&(!in_array('weather', $this->googlescript_libraries)))
-			$this->googlescript_libraries[]='weather';
 		if ($this->_mp->panoramio=="1"&&!in_array('panoramio', $this->googlescript_libraries))
 			$this->googlescript_libraries[]='panoramio';
 
