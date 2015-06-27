@@ -33,6 +33,7 @@ class plgSystemPlugin_googlemap3_helper
 	var $no_javascript;
 	var $pagebreak;
 	var	$google_API_version;
+	var $mapcssgen;
 	var $mapcss;
 	var	$langanim;
 	var	$first_google;
@@ -117,6 +118,7 @@ class plgSystemPlugin_googlemap3_helper
 			$this->google_API_version = '3';
 		if (substr($this->google_API_version,1,2)=='.x')
 			$this->google_API_version = '3.exp';
+		$this->mapcssgen = $this->params->get( 'mapcssgen', 'realtime' );
 		$this->mapcss = $this->params->get( 'mapcss', '' );
 		$this->clientgeotype = $this->params->get( 'clientgeotype', '0' );
 		$this->langanim = $this->params->get( 'langanim', 'en-GB;The requested panorama could not be displayed|Could not generate a route for the current start and end addresses|Street View coverage is not available for this route|You have reached your destination|miles|miles|ft|kilometers|kilometer|meters|In|You will reach your destination|Stop|Drive|Press Drive to follow your route|Route|Speed|Fast|Medium|Slow' );
@@ -640,7 +642,7 @@ class plgSystemPlugin_googlemap3_helper
 		if($this->first_googlemaps) {
 			$url = $this->base."/media/plugin_googlemap3/site/googlemaps/googlemapsv3.js";
 			$this->_addscript($url);
-			if ($this->mapcss!='') {
+			if ($this->mapcssgen!='none'&&$this->mapcss!='') {
 				$url = $this->base."/plugins/system/plugin_googlemap3/plugin_googlemap3.css.php";
 				$this->_addstylesheet($url);
 			}

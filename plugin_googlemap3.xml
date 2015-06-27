@@ -77,6 +77,10 @@
 				</field>
 				<field name="mapclass" type="text" size= "40" default="" export='1' label="GOOGLEMAPS_MAP_CLASS" description="GOOGLEMAPS_TT_MAP_CLASS" />
 				<field name="mapprint" type="text" size= "30" default="none" export='1' label="GOOGLEMAPS_MAP_MAPPRINT" description="GOOGLEMAPS_TT_MAP_MAPPRINT" />
+				<field name="mapcssgen" type="radio" size= "1" default="realtime" export='0' label="GOOGLEMAPS_MAP_CSSGEN" description="GOOGLEMAPS_TT_MAP_CSSGEN" class="btn-group">
+					<option value="realtime">GOOGLEMAPS_MAPCSS_REALTIME</option>
+					<option value="none">GOOGLEMAPS_MAPCSS_NONE</option>
+				</field>
 				<field name="mapcss" type="textarea" rows="3" cols="40" default="/* For img in the map remove borders, shadow, no margin and no max-width&#13;*/&#13;.map img, .svPanel img {&#13;    border: 0px;&#13;    box-shadow: none;&#13;    margin: 0px !important;&#13;    padding: 0px !important;&#13;    max-width: none !important;&#13;    background: none !important;&#13;}&#13;&#13;/* Make sure the directions are below the map&#13;*/&#13;.directions {&#13;    clear: left;&#13;}&#13;&#13;.adp-directions {&#13;    width: 100%;&#13;}&#13;&#13;/* Solve problems in chrome with the show of the direction steps in full width&#13;*/&#13;.adp-placemark {&#13;    width : 100%;&#13;}&#13;&#13;/* Padding for image overlay&#13;*/&#13;.controlDiv {&#13;    padding : 5px;&#13;}&#13;" export='0' label="GOOGLEMAPS_MAPS_CSS" description="GOOGLEMAPS_TT_MAPS_CSS" />
 				<field name="loadmootools" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_LOADWITHMOOTOOLS" description="GOOGLEMAPS_TT_LOADWITHMOOTOOLS" class="btn-group">
 					<option value="1">GOOGLEMAPS_LOADWITHMOOTOOLSMOOTOOLS</option>
