@@ -1005,7 +1005,7 @@ class plgSystemPlugin_googlemap3_helper
 		$code.= "<!-- fail nicely if the browser has no Javascript -->
 				<noscript><blockquote class='warning'><p>".$this->no_javascript."</p></blockquote></noscript>";			
 
-		if ($this->_mp->mapprint!='none') {
+		if ($this->_mp->mapprint!='none'&&$this->_mp->show==1) {
 	        // checks template image directory for image, if non found default are loaded
 			if ($this->_mp->mapprint=='icon')
 				$text = JHtml::_('image', 'system/printButton.png', JText::_('JGLOBAL_PRINT'), null, true);
