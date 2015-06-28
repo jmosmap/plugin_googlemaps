@@ -915,8 +915,7 @@ class plgSystemPlugin_googlemap3_helper
 			$this->_mp->geoxmloptions->dohilite = false;
 		}
 
-		if ($this->_mp->kmlzoommarkers!='0')
-			$this->_mp->geoxmloptions->zoomhere = intval($this->_mp->kmlzoommarkers);
+		$this->_mp->geoxmloptions->zoomhere = intval($this->_mp->kmlzoommarkers);
 
 		if ($this->_mp->kmlopendivmarkers!='')
 			$this->_mp->geoxmloptions->opendivmarkers = $this->_mp->kmlopendivmarkers;
