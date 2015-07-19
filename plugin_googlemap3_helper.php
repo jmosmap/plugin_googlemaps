@@ -406,7 +406,7 @@ class plgSystemPlugin_googlemap3_helper
 
 		if (count($this->_mp->msid)>0) {
 			foreach ($this->_mp->msid as $idx=>$val) {
-				$this->_mp->msid[$idx]=$this->protocol.$this->googlewebsite.'/maps/ms?';
+				$this->_mp->msid[$idx]="https://".$this->googlewebsite.'/maps/ms?';
 				if ($this->_mp->lang!='')
 					$this->_mp->msid[$idx] .= "hl=".$this->_mp->lang."&amp;";
 				$this->_mp->msid[$idx].='ie='.$this->iso.'&amp;msa=0&amp;msid='.$val.'&amp;output=kml';
@@ -673,8 +673,8 @@ class plgSystemPlugin_googlemap3_helper
 		}
 		
 		if ($this->_mp->clientgeotype=='local'&&$this->first_localsearch) {
-			$this->_addscript($this->protocol."www.google".$this->googlewebsiteext."/uds/api?file=uds.js&amp;v=1.0&amp;key=".$this->googlekey);
-			$style = "@import url('".$this->protocol."www.google".$this->googlewebsiteext."/uds/css/gsearch.css');\n@import url('".$this->protocol."www.google".$this->googlewebsiteext."/uds/solutions/localsearch/gmlocalsearch.css');";
+			$this->_addscript("https://www.google".$this->googlewebsiteext."/uds/api?file=uds.js&amp;v=1.0&amp;key=".$this->googlekey);
+			$style = "@import url('https://www.google".$this->googlewebsiteext."/uds/css/gsearch.css');\n@import url('https://www.google".$this->googlewebsiteext."/uds/solutions/localsearch/gmlocalsearch.css');";
 			$this->_addstyledeclaration($style);
 			$this->first_localsearch = false;
 		}
@@ -691,7 +691,7 @@ class plgSystemPlugin_googlemap3_helper
 	function add_google_script() {
 		if($this->first_google) {
 			$url = 'maps.googleapis.com';
-			$url = $this->protocol.$url."/maps/api/js?v=".$this->google_API_version;
+			$url = "https://".$url."/maps/api/js?v=".$this->google_API_version;
 			
 			if ($this->googlekey!="")
 				$url .= "&amp;key=".$this->googlekey;
@@ -1276,7 +1276,7 @@ class plgSystemPlugin_googlemap3_helper
 		$this->_debug_log("Address: ".$address);
 		
 		$uri = 'maps.googleapis.com';
-		$uri = $this->protocol.$uri."/maps/api/geocode/xml?address=".urlencode($address)."&sensor=false";
+		$uri = "https://".$uri."/maps/api/geocode/xml?address=".urlencode($address)."&sensor=false";
 		$this->_debug_log("get_geo(".$uri.")");
 		$getpage = $this->_getURL($uri);
 
