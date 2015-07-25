@@ -1025,7 +1025,7 @@ class plgSystemPlugin_googlemap3_helper
 			$code .= JHtml::_('link', "#", $text, $attribs);
 		}
 
-		$code.="<div id='mapplaceholder".$this->_mp->mapnm." style=\"height:100%;\"'>";
+		$code.="<div id='mapplaceholder".$this->_mp->mapnm."' style=\"height:100%;\">";
 		if ($this->_mp->align!='none')
 			$code.="<div id='mapbody".$this->_mp->mapnm."' style=\"display: none; height:100%; text-align:".$this->_mp->align."\">";
 		else
