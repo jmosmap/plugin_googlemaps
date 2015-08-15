@@ -178,6 +178,7 @@ class plgSystemPlugin_googlemap3_helper
 		$this->_mp->toaddress='';
 		$this->_mp->description='';
 		$this->_mp->tooltip='';
+		$this->_mp->labeltext='';
 		$this->_mp->kml = array();
 		$this->_mp->kmlsb = array();
 		$this->_mp->layer = array();
@@ -243,6 +244,11 @@ class plgSystemPlugin_googlemap3_helper
 					$this->_mp->tooltip=str_replace("&amp;","&", $this->_mp->tooltip);
 					if(!$this->_is_utf8($this->_mp->tooltip)) 
 						$this->_mp->tooltip= utf8_encode($this->_mp->tooltip);
+				}else if($values[0]=='labeltext'){
+					$this->_mp->labeltext=html_entity_decode(html_entity_decode(trim($values[1])));
+					$this->_mp->labeltext=str_replace("&amp;","&", $this->_mp->labeltext);
+					if(!$this->_is_utf8($this->_mp->labeltext)) 
+						$this->_mp->labeltext= utf8_encode($this->_mp->labeltext);
 				}else if($values[0]=='maptype'){
 					$this->_mp->mapType=strtolower($values[1]);
 				}else if ($values[0]=='waypoint'){
@@ -760,6 +766,21 @@ class plgSystemPlugin_googlemap3_helper
 			$this->_mp->description = htmlentities($this->_mp->description, ENT_QUOTES, "UTF-8");
 		}
 		$this->_mp->tooltip =  htmlentities($this->_mp->tooltip, ENT_QUOTES, "UTF-8");
+
+		if ($this->_mp->labeltext!="") {
+			if ($this->_mp->labelcolor==""&&$this->_mp->labelfont==""&&$this->_mp->labelfontsize==""&&$this->_mp->labelfontweight=="") {
+				$this->_mp->label =  htmlentities($this->_mp->labeltext, ENT_QUOTES, "UTF-8");
+			} else {
+				$this->_mp->label = new stdClass();
+				$this->_mp->label->text = htmlentities($this->_mp->labeltext, ENT_QUOTES, "UTF-8");
+				$this->_mp->label->color = $this->_mp->labelcolor;
+				$this->_mp->label->font = $this->_mp->labelfont;
+				$this->_mp->label->fontsize = $this->_mp->labelfontsize;
+				$this->_mp->label->fontweight = $this->_mp->labelfontweight;
+			}
+		}
+//		unset($this->_mp->labeltext, $this->_mp->labelcolor, $this->_mp->labelfont, $this->_mp->labelfontsize, $this->_mp->labelfontweight);
+
 	}
 	
 	function _processMapv3_tiles () {
@@ -809,6 +830,8 @@ class plgSystemPlugin_googlemap3_helper
 			$icon->iconshadowheight = $this->_mp->iconshadowheight;
 			$icon->iconanchorx = $this->_mp->iconanchorx;
 			$icon->iconanchory = $this->_mp->iconanchory;
+			$icon->labelanchorx = $this->_mp->labelanchorx;
+			$icon->labelanchory = $this->_mp->labelanchory;
 			if ($this->_mp->iconimagemap!="")
 				$icon->iconimagemap = $this->_mp->iconimagemap;
 			else

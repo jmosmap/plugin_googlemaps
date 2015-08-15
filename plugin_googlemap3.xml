@@ -466,6 +466,12 @@
 				<option value="1">GOOGLEMAPS_MAPS_INFOWINDOWOPEN</option>
 				<option value="0">GOOGLEMAPS_MAPS_INFOWINDOWCLOSED</option>
 				</field>
+				<field name="labelcolor" type="color" size="12" maxsize="12" default="" export='1' label="GOOGLEMAPS_LABELCOLOR" description="GOOGLEMAPS_TT_LABELCOLOR" />
+				<field name="labelfont" type="text" size="40" maxsize="60" default="" export='1' label="GOOGLEMAPS_LABELFONT" description="GOOGLEMAPS_TT_LABELFONT" />
+				<field name="labelfontsize" type="text" size="12" maxsize="12" default="" export='1' label="GOOGLEMAPS_LABELFONTSIZE" description="GOOGLEMAPS_TT_LABELFONTSIZE" />
+				<field name="labelfontweight" type="text" size="12" maxsize="12" default="" export='1' label="GOOGLEMAPS_LABELFONTWEIGHT" description="GOOGLEMAPS_TT_LABELFONTWEIGHT" />
+				<field name="labelanchorx" type="text" size= "3" default="" export='1' label="GOOGLEMAPS_LABELANCHORX" description="GOOGLEMAPS_TT_LABELANCHORX" />
+				<field name="labelanchory" type="text" size= "3" default="" export='1' label="GOOGLEMAPS_LABELANCHORY" description="GOOGLEMAPS_TT_LABELANCHORY" />
 			</fieldset>
 			<fieldset name="GOOGLEMAP_ICON" addfieldpath="/plugins/system/plugin_googlemap3/models/fields">
 				<field name="icon" type="Mediakey" size="60" maxsize="255" default="" export='1' preview="true" label="GOOGLEMAPS_ICONS_IMAGE" description="GOOGLEMAPS_TT_ICONS_IMAGE" />
