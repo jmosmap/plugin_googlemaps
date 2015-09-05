@@ -154,6 +154,15 @@ class plugin_googlemap3_proxy_kml
 			$this->protocol = "https://";
 			return true;
 		}
+
+		// Check if it is based on MID
+		// So maps.google.xxx
+		$googlereg = '/^www\.google((\.[a-z]{2,3}){1,2})\/maps\/d\/kml\?/';
+		
+		if (preg_match($googlereg, $url)== 1) {
+			$this->protocol = "https://";
+			return true;
+		}
 				
 		// Check if url is defined on the website
 		$database  = JFactory::getDBO();
