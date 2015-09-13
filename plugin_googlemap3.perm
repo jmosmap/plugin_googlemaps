@@ -86,6 +86,10 @@
 					<option value="0">GOOGLEMAPS_LOADWITHMOOTOOLSTIMEINTERVAL</option>
 				</field>
 				<field name="timeinterval" type="text" size= "4" default="500" export='1' label="GOOGLEMAPS_TIMEINTERVAL" description="GOOGLEMAPS_TT_TIMEINTERVAL" />
+				<field name="loadfont" type="radio" size= "1" default="1" export='1' label="GOOGLEMAPS_MAP_LOADFONT" description="GOOGLEMAPS_TT_LOADFONT" class="btn-group btn-group-yesno">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
 				<field name="Google_API_key" type="text" size="60" maxsize="255" default="" export='0' label="GOOGLEMAPS_API_KEY" description="GOOGLEMAPS_TT_API_KEY" />
 				<field name="Google_Multi_API_key" type="textarea" rows="5" cols="40" default="" export='0' label="GOOGLEMAPS_MULTI_API_KEY" description="GOOGLEMAPS_TT_MULTI_API_KEY" />
 				<field name="urlsetting" type="radio" size= "1" default="http_host" export='0' label="GOOGLEMAPS_URLWEBSITE" description="GOOGLEMAPS_TT_URLWEBSITE" class="btn-group">
