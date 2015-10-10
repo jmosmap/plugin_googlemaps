@@ -922,6 +922,5 @@
 	</config>
 	<updateservers>
 		<server type="extension" priority="1" name="Plugin Googlemap Update Site Github">https://raw.githubusercontent.com/jmosmap/plugin_googlemaps/master/update/extension.xml</server>
-		<server type="extension" priority="2" name="Plugin Googlemap Update Site Reumer">http://tech.reumer.net/update/plugin_googlemap3/extension.xml</server>
 	</updateservers>	
 </extension>
