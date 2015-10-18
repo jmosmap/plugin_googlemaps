@@ -293,6 +293,18 @@
 					<option value="2">GOOGLEMAPS_MAPS_GEOCENTER_BOUNDS</option>
 					<option value="3">GOOGLEMAPS_MAPS_GEOCENTER_DIREC</option>
 				</field>
+				<field name="geomarkerurl" type="Mediakey" size="60" maxsize="255" default="/media/plugin_googlemap3/site/geolocation/images/gpsloc.png" export='1' preview="true" label="GOOGLEMAPS_GEO_MARKER" description="GOOGLEMAPS_TT_GEO_MARKER" />
+				<field name="geomarkersizex" type="text" size= "3" default="34" export='1' label="GOOGLEMAPS_GEOMARKER_X" description="GOOGLEMAPS_TT_GEOMARKER_X" />
+				<field name="geomarkersizey" type="text" size= "3" default="34" export='1' label="GOOGLEMAPS_GEOMARKER_Y" description="GOOGLEMAPS_TT_GEOMARKER_Y" />
+				<field name="geomarkerscaledx" type="text" size= "3" default="17" export='1' label="GOOGLEMAPS_GEOMARKER_SX" description="GOOGLEMAPS_TT_GEOMARKER_SX" />
+				<field name="geomarkerscaledy" type="text" size= "3" default="17" export='1' label="GOOGLEMAPS_GEOMARKER_SY" description="GOOGLEMAPS_TT_GEOMARKER_SY" />
+				<field name="geomarkeranchorx" type="text" size= "3" default="8" export='1' label="GOOGLEMAPS_GEOMARKER_AX" description="GOOGLEMAPS_TT_GEOMARKER_AX" />
+				<field name="geomarkeranchory" type="text" size= "3" default="8" export='1' label="GOOGLEMAPS_GEOMARKER_AY" description="GOOGLEMAPS_TT_GEOMARKER_AY" />
+				<field name="geocirclefill" type="color" size="12" maxsize="12" default="#61a0bf" export='1' label="GOOGLEMAPS_GEO_CFILL" description="GOOGLEMAPS_TT_GEO_CFILL" />
+				<field name="geocirclestroke" type="color" size="12" maxsize="12" default="#1bb6ff" export='1' label="GOOGLEMAPS_GEO_CSTROKE" description="GOOGLEMAPS_TT_GEO_CSTROKE" />
+				<field name="geocirclestrokeop" type="text" size="12" maxsize="12" default=".4" export='1' label="GOOGLEMAPS_GEO_COPSTROKE" description="GOOGLEMAPS_TT_GEO_COPSTROKE" />
+				<field name="geocirclefillop" type="text" size="12" maxsize="12" default=".4" export='1' label="GOOGLEMAPS_GEO_COPFILL" description="GOOGLEMAPS_TT_GEO_COPFILL" />
+				<field name="geocirclestrokeweight" type="text" size="12" maxsize="12" default="1" export='1' label="GOOGLEMAPS_GEO_CWEIGHT" description="GOOGLEMAPS_TT_GEO_CWEIGHT" />
 			</fieldset>
 			<fieldset name="GOOGLEMAP_CONTROL">
 				<field name="controltype" type="radio" size= "5" default="UI" export='1' label="GOOGLEMAPS_MAPS_CONTROLTYPE" description="GOOGLEMAPS_TT_MAPS_CONTROLTYPE" class="btn-group">
