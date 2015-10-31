@@ -311,6 +311,10 @@
 					<option value="UI">GOOGLEMAPS_MAPS_CONTROLTYPEAUTOMATIC</option>
 					<option value="user">GOOGLEMAPS_MAPS_CONTROLTYPEUSER</option>
 				</field>
+				<field name="oldcontrol" type="radio" size= "1" default="0" export='1' label="GOOGLEMAPS_MAPS_OLDCONTROL" description="GOOGLEMAPS_TT_MAPS_OLDCONTROL" class="btn-group">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
 				<field name="zoomType" type="radio" size= "10" default="3D-large" export='1' label="GOOGLEMAPS_MAPS_MAPCONTROL" description="GOOGLEMAPS_TT_MAPS_MAPCONTROL" class="btn-group">
 					<option value="Large">GOOGLEMAPS_MAPS_MAPCONTROLLARGE</option>
 					<option value="Small">GOOGLEMAPS_MAPS_MAPCONTROLSMALL</option>
