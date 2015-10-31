@@ -933,6 +933,6 @@
 		</fields>
 	</config>
 	<updateservers>
-		<server type="extension" priority="1" name="Plugin Googlemap Update Site Github">https://raw.githubusercontent.com/jmosmap/plugin_googlemaps/master/update/extension.xml</server>
+		<server type="extension" priority="1" name="Plugin Googlemap Update Site">https://raw.githubusercontent.com/jmosmap/plugin_googlemaps/master/update/extension.xml</server>
 	</updateservers>	
 </extension>

@@ -30,6 +30,7 @@ class plgSystemPlugin_googlemap3 extends JPlugin
 	var $countmatch;
 	var $event;
 	var $helper;
+	var $debug_plugin;
 	
 	protected $app;
 	protected $db;
@@ -54,13 +55,16 @@ class plgSystemPlugin_googlemap3 extends JPlugin
 		$this->loadLanguage();
 		// Check if the params are defined and set so the initial defaults can be removed.
 		$this->_restore_permanent_defaults();
-		// Set document and doctype to null. Can only be retrievedwhen events are triggered. otherwise the language of the site magically changes.
-		$this->document = NULL;
-		$this->doctype = NULL;
 		// Get params
 		$this->publ = $this->params->get( 'publ', 1 );
 		$this->plugincode = $this->params->get( 'plugincode', 'mosmap' );
 		$this->brackets = $this->params->get( 'brackets', '{' );
+		$this->debug_plugin = $this->params->get( 'debug', '0' );
+		// Check if the installation url is correct, bug Joomla not to changes the update sites druing install
+		$this->_check_update_sites();
+		// Set document and doctype to null. Can only be retrievedwhen events are triggered. otherwise the language of the site magically changes.
+		$this->document = NULL;
+		$this->doctype = NULL;
 		// define the regular expression for the bot
 		if ($this->brackets=="both") {
 			$this->regex="/(<p\b[^>]*>\s*)?(\{|\[)".$this->plugincode.".*?(([a-z0-9A-Z]+((\{|\[)[0-9]+(\}|\]))?='[^']+'.*?\|?.*?)*)(\}|\])(\s*<\/p>)?/msi";
@@ -379,6 +383,93 @@ class plgSystemPlugin_googlemap3 extends JPlugin
 				}
 			}
 		}
+	}
+
+	function _check_update_sites() {
+		if($this->app->isSite()) {
+			return;
+		}
+		
+		// Check if the update function is shown
+		$jinput = JFactory::getApplication()->input;
+		
+		if ($jinput->get('option')=="com_installer"&&$jinput->get('view')=="update") {
+			$db = JFactory::getDbo();
+	
+			try {
+				// Get update site for plugin that are old
+				$query = $db->getQuery(true);
+				$query->select($db->quoteName('update_site_id'))
+						->from($db->quoteName('#__update_sites'))
+						->where($db->quoteName('location').' = "http://tech.reumer.net/update/plugin_googlemap3/extension.xml"')
+						;
+				$db->setQuery($query);
+				$db->execute();
+				$exists = (bool) $db->getNumRows();
+				$rows = $db->loadAssocList('update_site_id','update_site_id');
+				if ($exists) {
+					// Delete old ones
+					$db->setQuery("delete from ".$db->quoteName('#__update_sites')." where ".$db->quoteName('update_site_id')." in (".implode($rows, ",").")");
+					$db->execute();
+					// Delete also parent in update_sites_extensions
+					$db->setQuery("delete from ".$db->quoteName('#__update_sites_extensions')." where ".$db->quoteName('update_site_id')." in (".implode($rows, ",").")");
+					$db->execute();
+				}
+				$query = $db->getQuery(true);
+				$query->select($db->quoteName('update_site_id'))
+						->from($db->quoteName('#__update_sites'))
+						->where($db->quoteName('name').' = "Plugin Googlemap Update Site Github"');
+				$db->setQuery($query);
+				$db->execute();
+				$exists = (bool) $db->getNumRows();
+				$rows = $db->loadAssocList('update_site_id', 'update_site_id');
+				if ($exists) {
+					// Delete old ones
+					$db->setQuery("delete from ".$db->quoteName('#__update_sites')." where ".$db->quoteName('update_site_id')." in (".implode($rows, ",").")");
+					$db->execute();
+					// Delete also parent in update_sites_extensions
+					$db->setQuery("delete from ".$db->quoteName('#__update_sites_extensions')." where ".$db->quoteName('update_site_id')." in (".implode($rows, ",").")");
+					$db->execute();
+				}
+				
+				// Insert new one if does not exists
+				$query = $db->getQuery(true);
+				$query->select($db->quoteName('update_site_id'))
+						->from($db->quoteName('#__update_sites'))
+						->where($db->quoteName('location').' = "https://raw.githubusercontent.com/jmosmap/plugin_googlemaps/master/update/extension.xml"')
+						;
+				$db->setQuery($query);
+				$db->execute();
+				$exists = (bool) $db->getNumRows();
+				if (!$exists) {
+					$db->setQuery("insert into ".$db->quoteName('#__update_sites')." values (null, 'Plugin Googlemap Update Site', 'extension', 'https://raw.githubusercontent.com/jmosmap/plugin_googlemaps/master/update/extension.xml', 1, 0, null)");
+					$db->execute();
+					$query = $db->getQuery(true);
+					$query->select($db->quoteName('extension_id'))
+							->from($db->quoteName('#__extensions'))
+							->where($db->quoteName('element').' = "plugin_googlemap3"')
+							;
+					$db->setQuery($query);
+					$db->execute();
+					$rowext = $db->loadAssoc();
+		
+					$query = $db->getQuery(true);
+					$query->select($db->quoteName('update_site_id'))
+							->from($db->quoteName('#__update_sites'))
+							->where($db->quoteName('location').' = "https://raw.githubusercontent.com/jmosmap/plugin_googlemaps/master/update/extension.xml"')
+							;
+					$db->setQuery($query);
+					$db->execute();
+					$row = $db->loadAssoc();
+					$db->setQuery("insert into ".$db->quoteName('#__update_sites_extensions')." values (".$row["update_site_id"].", ".$rowext["extension_id"].")");
+					$db->execute();
+				}
+			} catch (Exception $e) {
+				if ($this->debug_plugin == '1')
+					echo 'Caught exception: ',  $e->getMessage(), "\n";
+			}		
+		}
+		unset($jinput, $query, $exists, $rows, $rowext, $row);
 	}
 }
 
