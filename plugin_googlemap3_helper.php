@@ -289,8 +289,10 @@ class plgSystemPlugin_googlemap3_helper
 					$this->_mp->tilelayer=$this->_remove_html_tags($values[1]);
 				}else {
 					// other parameters
-					if ($values[0]!='')
-						$this->_mp->$values[0]=$values[1];
+					if ($values[0]!=''){
+						$prop = $values[0];
+						$this->_mp->{$prop}=$values[1];
+					}
 				}
 			}
 		}
