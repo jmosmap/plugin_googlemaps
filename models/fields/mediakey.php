@@ -49,7 +49,7 @@ class JFormFieldMediakey extends JFormFieldMedia
 	protected function getInput()
 	{
 		$html = parent::getInput();
-		$readonly .= $this->element['readonly'] ? ' readonly="' . (int) $this->element['readonly'] . '"' : '';
+		$readonly = $this->element['readonly'] ? ' readonly="' . (int) $this->element['readonly'] . '"' : '';
 		$html= str_replace('readonly="readonly"',$readonly, $html);
 		
 		return $html;
