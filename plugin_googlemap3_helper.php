@@ -68,6 +68,8 @@ class plgSystemPlugin_googlemap3_helper
 	 //	function init() {
 	public function __construct($jversion, $params, $regex, $document, $brackets)
 	{
+		// Joomla config params
+	    	$joomlaConfig = JFactory::getConfig();
 		// The params of the plugin
 		$this->jversion = $jversion;
 		$this->params = $params;
@@ -87,7 +89,8 @@ class plgSystemPlugin_googlemap3_helper
 		$this->base = JURI::base(true);
 		$this->_debug_log("url base(true): ".$this->base);			
 		// Protocol not working with maps.google.com only with enterprise account
-		if ($_SERVER['SERVER_PORT'] == 443)
+		// Force SSL on Google Maps if Joomla Force SSL on entire site is enable
+		if ($_SERVER['SERVER_PORT'] == 443 || $joomlaConfig->get('force_ssl') == 2)
 			$this->protocol = "https://";
 		else
 			$this->protocol = "http://";
